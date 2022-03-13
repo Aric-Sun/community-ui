@@ -11,7 +11,7 @@ Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: '1pmqCda27U9Qvzsz5wDfwU0v4LVNqUNo'
 })
-
+//开始新项目2022.03.13
 new Vue({
   router,
   store,
