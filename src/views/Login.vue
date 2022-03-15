@@ -99,6 +99,15 @@ export default {
     };
   },
   methods: {
+    handleSubmit(name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.$Message.success("Success!");
+        } else {
+          this.$Message.error("Fail!");
+        }
+      });
+    },
     submit() {
       // this.$router.push("/flowdetection");
       // this.$emit("gotoHome");
