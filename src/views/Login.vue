@@ -8,43 +8,43 @@
 
       </div>
       <Form
-        class="form"
-        ref="formInline"
-        :model="formInline"
-        :rules="ruleInline"
-        
-        inline
+          class="form"
+          ref="formInline"
+          :model="formInline"
+          :rules="ruleInline"
+
+          inline
       >
-      <div style="color:black;margin-bottom:20px">
-        物业管理系统
-      </div>
-      
+        <div style="color:black;margin-bottom:20px">
+          物业管理系统
+        </div>
+
         <FormItem prop="user" >
           <Select v-model="selectModel" style="width:80px">
             <Option v-for="item in selectList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
+          </Select>
           <Input type="text" style="width:160px"  v-model="formInline.user" placeholder="编号/用户名" />
           <Icon type="ios-person-outline" slot="prepend"></Icon>
         </FormItem>
         <FormItem prop="password">
           <Input
-          style="width:240px"
-            type="password"
-            v-model="formInline.password"
-            placeholder="密码"
+              style="width:240px"
+              type="password"
+              v-model="formInline.password"
+              placeholder="密码"
           />
           <Icon type="ios-lock-outline" slot="prepend"></Icon>
         </FormItem>
         <RadioGroup style="margin-bottom:20px;margin-top:-10px;float:left;margin-left:64px" v-model="userRadio">
-        <Radio label="物业经理"></Radio>
-        <Radio label="员工"></Radio>
+          <Radio label="物业经理"></Radio>
+          <Radio label="员工"></Radio>
         </RadioGroup>
         <div>
           <FormItem>
-          <Button style="width:240px"  type="primary"   @click="submit">登录</Button>
-        </FormItem>
+            <Button style="width:240px"  type="primary"   @click="submit">登录</Button>
+          </FormItem>
         </div>
-        
+
       </Form>
     </div>
   </div>
@@ -67,6 +67,7 @@ export default {
           value: 'username',
           label: '用户名'
         },
+
       ],
       selectModel: 'id',
       userRadio:'物业经理',
@@ -185,4 +186,59 @@ export default {
 </script>
 <style>
 
+.login_page {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(5, 181, 224, 0.7);
+  background-image: linear-gradient(to bottom right, rgb(101, 232, 255), rgb(1, 128, 207));
+  /* background: url(./img/bg.jpg) no-repeat center center; */
+  /* background-size: 100% 100%; */
+}
+.form_contianer {
+  width: 380px;
+  height: 280px;
+  position:absolute;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  top: 0;
+  left: 580px;
+  right: 0;
+  bottom: 0;
+  margin: 150px auto;
+  background-color: rgb(255, 255, 255);
+  /* box-shadow: -15px 15px 15px rgba(29, 29, 29, 0.7); */
+  /* background: linear-gradient(
+    230deg,
+    rgba(216, 216, 216, 0) 0%,
+    rgb(141, 141, 141) 100%
+  ); */
+  padding-top: 50px;
+  border-radius: 5%;
+}
+.people{
+  position: absolute;
+  width: 28%;
+  height: 36%;
+  top: -60px;
+  background: url("./img/people.png") no-repeat;
+  background-size: 100% 100%;
+}
+.illustrations{
+  position: absolute;
+  width: 40%;
+  height: 63%;
+  top: 90px;
+  left: 180px;
+  background: url("./img/interweb.png") no-repeat;
+  background-size: 100% 100%;
+}
+.text{
+  margin-top: 550px;
+  color: aliceblue;
+}
 </style>
