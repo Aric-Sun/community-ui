@@ -1,5 +1,5 @@
 <template>
-  <!--陈增-部门管理  -->
+  <!--部门管理  -->
   <div class="department">
     <!-- 标题 -->
     <div class="heading">
@@ -72,7 +72,112 @@
 </template>
 
 <script>
-
+import {getEmployeeInformation,getEmployeeInformations, updataEmployeeInformation,getDepartmentName,addEmployeeInformation} from "network/employee";
+import {addDepartments,updataDepartments, getDepartmentInformation,deleteDepartments} from 'network/department';
+export default {
+  name: "department",
+  data() {
+    return {
+      eeitorIndex: 0,
+      addModal: false,
+      editorModal: false,
+      addDepartmentForm: {
+        id:'',
+        departmentName:"",
+        headName:"",
+      },
+      columns: [
+        {
+          title: "部门编号",
+          key: "DepartmentId",
+        },
+        {
+          title: "部门负责人",
+          key: "name",
+        },
+        {
+          title: "部门名称",
+          key: "DepartmentName",
+        },
+        {
+          title: "操作",
+          key: "action",
+          width: 150,
+          align: "center",
+          render: (h, params) => {
+            return h("div", [
+              h(
+                  "Button",
+                  {
+                    props: {
+                      type: "primary",
+                      size: "small",
+                    },
+                    style: {
+                      marginRight: "5px",
+                    },
+                    on: {
+                      click: () => {
+                        this.editorDepartment(params.index);
+                      },
+                    },
+                  },
+                  "编辑"
+              ),
+              h(
+                  "Button",
+                  {
+                    props: {
+                      type: "error",
+                      size: "small",
+                    },
+                    on: {
+                      click: () => {
+                        this.remove(params.index);
+                      },
+                    },
+                  },
+                  "删除"
+              ),
+            ]);
+          },
+        },
+      ],
+      DepartmentData: [],
+      DepartmentDataName:['John Browe','Jon Sun','Jon Snow','Joe Black','Jim Green','Jack Brown','Tom Mao','Jerry Shu'],
+      dateDepartment:{
+        departmentName:'',
+      },
+      dateEmployee:[{
+        name:'',
+        departmentId:'',
+      }],
+    };
+  },
+  methods: {
+    getDepartmentInformation(){
+      this.DepartmentData = [];
+      getDepartmentInformation().then((res) => {
+        // console.log(id);
+        // this.getEmployeeInformation();
+        for(let i in res.data._embedded.departments){
+          const idStr = res.data._embedded.departments[i]._links.self.href;
+          const id = idStr.split('/');
+          this.DepartmentData.push({
+            DepartmentId:id[4],
+            DepartmentName: res.data._embedded.departments[i].name
+          })
+        }
+        for(let j in this.DepartmentData){
+          this.DepartmentData[j].name = this.DepartmentDataName[j]
+        }
+      });
+    },
+  },
+  mounted(){
+    this.getDepartmentInformation();
+  }
+};
 </script>
 
 <style scoped>
