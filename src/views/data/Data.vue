@@ -162,3 +162,74 @@
     </Row>
   </div>
 </template>
+
+
+
+
+
+<style scoped>
+.data {
+  position: absolute;
+  top: 0;
+  bottom: -790px;
+  /* bottom: -250px; */
+  left: 208px;
+  right: 0;
+  padding: 2em; 
+  background-color: #f5f6fa;
+}
+header {
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(193, 193, 193, 0.5);
+}
+.bm-view {
+  width: 100%;
+  height: 500px;
+}
+/* 去除左下角百度地图logo */
+/deep/.anchorBL {
+  display: none !important;
+}
+.gargarbageLis {
+  margin-left: 35px;
+  height: 533px;
+}
+.legend {
+  position: absolute;
+  top: 535px;
+  left: 3.5%;
+  height: 80px;
+  width: 100px;
+  background-color: rgb(252, 248, 243);
+  z-index: 100;
+}
+.tipInformation {
+  font-size: 9px;
+}
+#linePieCss {
+  width: 100%;
+  height: 260px;
+}
+#histogramCss {
+  width: 100%;
+  height: 260px;
+}
+#lineHistogramCss{
+  width: 100%;
+  height: 300px;
+}
+#radarCss{
+  width: 100%;
+  height: 260px;
+}
+/deep/.ivu-divider-horizontal {
+    display: block;
+    height: 1px;
+    width: 100%;
+    min-width: 100%;
+    margin: 12px 0;
+    clear: both;
+}
+</style>
