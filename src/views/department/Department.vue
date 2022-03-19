@@ -173,6 +173,22 @@ export default {
         }
       });
     },
+    addOk() {
+      this.dateDepartment.departmentName = this.addDepartmentForm.departmentName;
+      addDepartments(this.dateDepartment).then(resp => {
+        this.$Message.success('添加成功');
+      }).catch(err => {
+        console.log(err)
+        this.$Message.error('添加失败');
+      }).finally(() => {
+        this.addModal = false;
+        this.addModal = false;
+        this.getDepartmentInformation();
+      });
+    },
+    addDepartment() {
+      this.addModal = true;
+    },
   },
   mounted(){
     this.getDepartmentInformation();
