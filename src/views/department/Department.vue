@@ -189,6 +189,19 @@ export default {
     addDepartment() {
       this.addModal = true;
     },
+    editorOk() {
+      // console.log(this.addDepartmentForm);
+      updataDepartments(this.addDepartmentForm).then(res =>{
+        // this.getDepartmentInformation();
+        this.$Message.info(
+            "修改成功"
+        );
+        setTimeout(() => {
+          // console.log(res);
+          this.getDepartmentInformation();
+        }, 200);
+      });
+    },
   },
   mounted(){
     this.getDepartmentInformation();
