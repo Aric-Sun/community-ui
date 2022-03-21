@@ -202,6 +202,12 @@ export default {
         }, 200);
       });
     },
+    editorDepartment(index) {
+      this.addDepartmentForm.departmentName = this.DepartmentData[index].DepartmentName;
+      this.addDepartmentForm.headName = this.DepartmentData[index].name;
+      this.addDepartmentForm.id = this.DepartmentData[index].DepartmentId;
+      this.editorModal = true;
+    },
   },
   mounted(){
     this.getDepartmentInformation();
