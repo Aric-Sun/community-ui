@@ -208,6 +208,19 @@ export default {
       this.addDepartmentForm.id = this.DepartmentData[index].DepartmentId;
       this.editorModal = true;
     },
+    remove(index) {
+      this.$Modal.confirm({
+        title: '删除',
+        content: '确定删除'+this.DepartmentData[index].DepartmentName+'?',
+        onOk: () => {
+          this.deleteOk(index);
+          this.DepartmentData.splice(index, 1);
+        },
+        onCancel: () => {
+          this.$Message.info('cancel');
+        }
+      });
+    },
   },
   mounted(){
     this.getDepartmentInformation();
