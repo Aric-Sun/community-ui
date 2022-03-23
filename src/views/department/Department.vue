@@ -221,6 +221,21 @@ export default {
         }
       });
     },
+    deleteOk(index){
+      const id = this.DepartmentData[index].DepartmentId;
+      deleteDepartments(id).then(res =>{
+        this.$Message.info('删除成功');
+        setTimeout(() => {
+          console.log(res);
+        }, 200);
+      })
+    },
+    cancel() {
+      this.addModal = false;
+      this.editorModal = false;
+      this.addDepartmentForm.departmentName = "";
+      this.addDepartmentForm.headName = "";
+    },
   },
   mounted(){
     this.getDepartmentInformation();
