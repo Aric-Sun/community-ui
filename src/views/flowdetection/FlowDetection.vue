@@ -1,0 +1,140 @@
+<template>
+  <div class="flow-detection">
+    <header>
+      系统流量监测
+    </header>
+    <!-- <div >
+      <e-chart :options="echartOptions" class="e-charts"></e-chart>
+    </div> -->
+    <Row style="margin-top:20px">
+      <Col span="14">
+        <Card>
+          <h2>流量检测</h2>
+          <!-- <div id="lineHistogramCss"></div> -->
+          <e-chart :options="echartOptions" class="e-charts"></e-chart>
+        </Card>
+      </Col>
+      <Col span="9" offset="1">
+        <Card>
+          <h2>网络访问情况</h2>
+          <div id="radarCss"></div>
+        </Card>
+      </Col>
+    </Row>
+    
+  </div>
+</template>
+
+<script>
+import EChartsVue from "../../components/ECharts.vue";
+import * as echarts from "echarts";
+export default {
+  name: "FlowDetection",
+  components: {
+    EChart: EChartsVue,
+  },
+  data() {
+    return {
+      echartOptions: {
+        // title: {
+        //   text: "流量监测",
+        //   // subtext: '纯属虚构',
+        //   top: 0,
+        //   left: 0,
+        //   textStyle: {
+        //     // 图例的公用文本样式。
+        //     fontSize: 14,
+        //     color: "#000",
+        //     fontWeight: "normal", // 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+        //   },
+        // },
+        legend: {
+          data: ["安卓端请求流量", "垃圾桶使用频率", "出入人流量"],
+        },
+        xAxis: {
+          type: "time",
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            data: [
+              ["2020-12-20", 10],
+              ["2020-12-22", 40],
+              ["2020-12-24", 90],
+              ["2020-12-26", 5],
+              ["2020-12-28", 123],
+            ],
+            type: "line",
+            name: "安卓端请求流量",
+          },
+          {
+            data: [
+              ["2020-12-20", 5],
+              ["2020-12-22", 22],
+              ["2020-12-24", 14],
+              ["2020-12-26", 31],
+              ["2020-12-28", 6],
+            ],
+            type: "line",
+            name: "垃圾桶使用频率",
+          },
+          {
+            data: [
+              ["2020-12-20", 44],
+              ["2020-12-22", 162],
+              ["2020-12-24", 67],
+              ["2020-12-26", 44],
+              ["2020-12-28", 9],
+            ],
+            type: "line",
+            name: "出入人流量",
+          },
+        ],
+      },
+    };
+  },
+  methods: {
+
+  },
+  mounted() {
+    // this.lineHistogram();
+    this.echartsRadar();
+  },
+};
+</script>
+
+<style scoped>
+header {
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgba(193, 193, 193, 0.5);
+}
+
+.flow-detection {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 208px;
+  right: 0;
+  padding: 2em;
+  background-color: #f5f6fa;
+}
+
+.e-charts {
+  background: #fff;
+  margin-left: 50px;
+  padding: 20px;
+  margin: 0 auto;
+}
+#lineHistogramCss {
+  width: 100%;
+  height: 400px;
+}
+#radarCss {
+  width: 100%;
+  height: 400px;
+}
+</style>
