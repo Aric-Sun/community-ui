@@ -96,7 +96,92 @@ export default {
     };
   },
   methods: {
-
+    echartsRadar() {
+      var echartsRadar = document.getElementById("radarCss");
+      var myChart = echarts.init(echartsRadar);
+      var option;
+      option = {
+        // title: {
+        //   text: "网络访问情况",
+        //   // subtext: '纯属虚构',
+        //   top: 20,
+        //   left: 10,
+        //   textStyle: {
+        //     // 图例的公用文本样式。
+        //     fontSize: 13,
+        //     color: "#000",
+        //     fontWeight: "normal", // 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+        //   },
+        // },
+        tooltip: {
+          trigger: "item",
+        },
+        legend: {
+          type: "scroll",
+          bottom: 0,
+          data: (function() {
+            var list = [];
+            for (var i = 1; i <= 7; i++) {
+              list.push("周" + i);
+            }
+            return list;
+          })(),
+        },
+        // visualMap: {
+        //   show: false,
+        //   top: "middle",
+        //   right: 10,
+        //   color: ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple'],
+        //   calculable: false,
+        // },
+        grid: { bottom: "7%", top: "32%" },
+        radar: {
+          center: ["50%", "45%"],
+          radius: 120,
+          indicator: [
+            { text: "00:00~04:00", max: 300 },
+            { text: "04:00~08:00", max: 300 },
+            { text: "08:00~12:00", max: 300 },
+            { text: "12:00~16:00", max: 300 },
+            { text: "16:00~20:00", max: 300 },
+            { text: "20:00~24:00", max: 300 },
+          ],
+        },
+        series: (function() {
+          var series = [];
+          for (var i = 1; i <= 7; i++) {
+            series.push({
+              name: "访问人数",
+              type: "radar",
+              symbol: "none",
+              lineStyle: {
+                width: 1,
+              },
+              emphasis: {
+                areaStyle: {
+                  color: "rgba(0,250,0,0.3)",
+                },
+              },
+              data: [
+                {
+                  value: [
+                    (42 - i) * 7,
+                    (28 - i) * 6 + 60,
+                    i * 5 + 100,
+                    i * 20,
+                    (i * i * i) / 3 + 100,
+                    (i * i * i) / 4 + 100,
+                  ],
+                  name: "周" + i,
+                },
+              ],
+            });
+          }
+          return series;
+        })(),
+      };
+      option && myChart.setOption(option);
+    },
   },
   mounted() {
     // this.lineHistogram();
