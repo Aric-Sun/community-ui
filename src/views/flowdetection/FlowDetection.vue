@@ -182,6 +182,174 @@ export default {
       };
       option && myChart.setOption(option);
     },
+    lineHistogram() {
+      var chartDom = document.getElementById("lineHistogramCss");
+      var myChart = echarts.init(chartDom);
+      var option;
+
+      option = {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            crossStyle: {
+              color: "#999",
+            },
+          },
+        },
+        toolbox: {
+          feature: {
+            mark: { show: false },
+            dataView: { show: false, readOnly: false },
+            magicType: { show: false, type: ["line", "bar", "stack", "tiled"] },
+            restore: { show: false },
+            saveAsImage: { show: false },
+          },
+        },
+        legend: {
+          data: ["东门", "西门", "南门", "北门", "车流量"],
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: [
+              "0~2",
+              "3~4",
+              "5~6",
+              "7~8",
+              "9~10",
+              "11~12",
+              "13~14",
+              "15~16",
+              "17~18",
+              "19~20",
+              "21~22",
+              "23~24",
+            ],
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "人流量",
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+              formatter: "{value} 人次",
+            },
+          },
+          {
+            type: "value",
+            name: "车流量",
+            min: 0,
+            max: 25,
+            interval: 5,
+            axisLabel: {
+              formatter: "{value} 车次",
+            },
+          },
+        ],
+        grid: { bottom: "7%", top: "22%" },
+        series: [
+          {
+            name: "东门",
+            type: "bar",
+            data: [
+              2.0,
+              4.9,
+              7.0,
+              23.2,
+              25.6,
+              76.7,
+              135.6,
+              162.2,
+              32.6,
+              20.0,
+              6.4,
+              3.3,
+            ],
+          },
+          {
+            name: "西门",
+            type: "bar",
+            data: [
+              2.6,
+              5.9,
+              9.0,
+              26.4,
+              28.7,
+              70.7,
+              175.6,
+              182.2,
+              48.7,
+              18.8,
+              6.0,
+              2.3,
+            ],
+          },
+          {
+            name: "南门",
+            type: "bar",
+            data: [
+              2.0,
+              4.9,
+              7.0,
+              23.2,
+              25.6,
+              76.7,
+              135.6,
+              162.2,
+              32.6,
+              20.0,
+              6.4,
+              3.3,
+            ],
+          },
+          {
+            name: "北门",
+            type: "bar",
+            data: [
+              2.6,
+              5.9,
+              9.0,
+              26.4,
+              28.7,
+              70.7,
+              175.6,
+              182.2,
+              48.7,
+              18.8,
+              6.0,
+              2.3,
+            ],
+          },
+          {
+            name: "车流量",
+            type: "line",
+            yAxisIndex: 1,
+            data: [
+              2.0,
+              2.2,
+              3.3,
+              4.5,
+              6.3,
+              10.2,
+              20.3,
+              23.4,
+              23.0,
+              16.5,
+              12.0,
+              6.2,
+            ],
+          },
+        ],
+      };
+      option && myChart.setOption(option);
+    },
   },
   mounted() {
     // this.lineHistogram();
