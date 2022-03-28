@@ -100,7 +100,16 @@ export default {
     }
   },
   methods: {
-
+    onEditButtonClicked(index, row) {
+      this.isModalShow = true;
+      this.modalTitle = '编辑公告';
+      this.modalMode = 2;
+      this.curEditingId = row.id;
+      this.noticeForm = {
+        title: row.title,
+        content: row.content
+      };
+    },
   },
   mounted() {
     this.fetchNotices();
