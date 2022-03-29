@@ -110,6 +110,24 @@ export default {
         content: row.content
       };
     },
+    onDeleteButtonClicked(index) {
+      this.$Modal.confirm({
+        title: '删除公告',
+        content: '确定要删除该公告？',
+        onOk: () => {
+          deleteNotice(index).then(resp => {
+            this.fetchNotices();
+            this.$Message.success('删除成功');
+          }).catch(err => {
+            console.log(err);
+            this.$Message.error('删除失败');
+          }).finally(() => {
+            this.$Modal.remove();
+          });
+        },
+        loading: true
+      });
+    },
   },
   mounted() {
     this.fetchNotices();
