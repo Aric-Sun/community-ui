@@ -128,6 +128,15 @@ export default {
         loading: true
       });
     },
+    onAddNoticeButtonClicked() {
+      this.noticeForm = {
+        title: '',
+        content: ''
+      }
+      this.modalMode = 1;
+      this.isModalShow = true;
+      this.modalTitle = '添加新公告';
+    },
   },
   mounted() {
     this.fetchNotices();
