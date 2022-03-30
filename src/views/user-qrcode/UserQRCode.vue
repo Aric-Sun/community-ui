@@ -152,4 +152,91 @@ export default {
     }
   }
 }
+ <step>
+    <name>Switch / case</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fieldname>flagfield</fieldname>
+    <use_contains>N</use_contains>
+    <case_value_type>None</case_value_type>
+    <case_value_format/>
+    <case_value_decimal/>
+    <case_value_group/>
+    <default_target_step>空操作 (什么也不做)</default_target_step>
+    <cases>
+      <case>
+        <value>new</value>
+        <target_step>空操作 (什么也不做) 2 2</target_step>
+      </case>
+      <case>
+        <value>changed</value>
+        <target_step>更新</target_step>
+      </case>
+      <case>
+        <value>deleted</value>
+        <target_step>空操作 (什么也不做) 2</target_step>
+      </case>
+    </cases>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>合并记录</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <keys>
+      <key>XH</key>
+    </keys>
+    <values>
+      <value>XH</value>
+      <value>DSSX</value>
+      <value>DS_GH</value>
+      <value>XM</value>
+      <value>DSSX</value>
+    </values>
+    <flag_field>flagfield</flag_field>
+    <reference>排序记录 2</reference>
+    <compare>排序记录</compare>
+    <compare>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
 </style>
