@@ -26,7 +26,40 @@
     <Modal></Modal>
   </div>
 </template>
+<style lang='scss' scoped>
+.user-passage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 208px;
+  right: 0;
+  padding: 2em;
+  background-color: #f5f6fa;
 
+  .heading {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(193, 193, 193, 0.5);
+
+    h1 {
+      font-size: 24px;
+      margin: 0;
+      margin-bottom: 16px;
+    }
+  }
+
+  .body {
+    padding: 20px;
+    background: #fff;
+
+    .pager {
+      margin-top: 10px;
+      text-align: right;
+    }
+  }
+}
+</style>
 <script>
 import { getManagers } from "network/manager";
 import { formatDate, getId } from "common/utils";
