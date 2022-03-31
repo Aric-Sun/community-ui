@@ -137,6 +137,34 @@ export default {
       this.isModalShow = true;
       this.modalTitle = '添加新公告';
     },
+    onModalConfirmClicked() {
+      this.$refs.noticeForm.validate(valid => {
+        if (!valid) {
+          this.$Message.error('表单校验失败');
+          this.isModalLoading = false;
+          return;
+        }
+        if (this.modalMode == 1) {
+          addNotice(this.noticeForm).then(resp => {
+            this.fetchNotices();
+            this.$Message.success('添加成功');
+          }).catch(err => {
+            this.$Message.error('添加失败');
+          }).finally(() => {
+            this.isModalShow = false;
+          });
+        } else {
+          editNotice({ id: this.curEditingId, ...this.noticeForm }).then(resp => {
+            this.fetchNotices();
+            this.$Message.success('更新成功');
+          }).catch(err => {
+            this.$Message.error('更新失败');
+          }).finally(() => {
+            this.isModalShow = false;
+          });
+        }
+      });
+    },
   },
   mounted() {
     this.fetchNotices();
