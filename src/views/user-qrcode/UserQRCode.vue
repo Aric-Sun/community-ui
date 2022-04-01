@@ -119,6 +119,63 @@ export default {
 }
 </script>
 
+<script>
+  export  default {
+    name:"Login",
+    data(){
+      return {
+        form:{
+          username: '',
+          password: ''
+        },
+        //表单验证，需要再el-form-item 元素中增加prop属性
+        rules:{
+          username: [
+            {required:true,message:'账号不能为空',trigger:'blur'}
+          ],
+          password: [
+            {required: true,message: '密码不能为空',trigger:'blur'}
+          ]
+        },
+        //对话框显示和隐藏
+        dialogVisible:false
+    }
+    },
+    methods:{
+      onSubmit(formName) {
+        //为表单绑定验证功能
+        this.$refs[formName].validate((valid) =>{
+          if (valid){
+            //使用 vue-router路由到指定页面，该方式称之为编程式导航
+            this.$router.push("/main");
+          } else {
+            this.dialogVisible = true;
+            return false;
+          }
+        });
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .login-box{
+    border: 1px solid #DCDFE6;
+    width: 350px;
+    margin:180px auto;
+    padding:35px 35px 15px 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow:0 0 25px #909399;
+  }
+
+  .login-title{
+    text-align:center;
+    margin:0 auto 40px auto;
+    color:#303133;
+  }
+</style>
 <style lang='scss' scoped>
 .user-qrcode {
   position: absolute;
