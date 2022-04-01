@@ -165,6 +165,10 @@ export default {
         }
       });
     },
+    onPageChanged(page) {
+      this.curPage = page;
+      this.fetchNotices();
+    },
   },
   mounted() {
     this.fetchNotices();
