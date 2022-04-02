@@ -169,6 +169,24 @@ export default {
       this.curPage = page;
       this.fetchNotices();
     },
+    fetchNotices() {
+      this.data = [];
+      this.isDataLoading = true;
+      getNotices(this.curPage - 1, this.pageSize).then(resp => {
+        const page = resp.data.page;
+        this.totalSize = page.totalElements;
+        for (const news of resp.data._embedded.news) {
+          const { title, content, _links } = news;
+          const id = getId(_links);
+          this.data.push({ id, title, content });
+        }
+      }).catch(err => {
+        console.log(err)
+        this.$Message.error('获取公告列表失败');
+      }).finally(() => {
+        this.isDataLoading = false;
+      });
+    },
   },
   mounted() {
     this.fetchNotices();
