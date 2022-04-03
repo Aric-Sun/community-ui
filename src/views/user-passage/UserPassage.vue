@@ -104,6 +104,67 @@ export default {
 }
 </script>
 
+
+<template>
+  <view class="login-container">
+    <view v-for="item in userList" class="login-items" :key="item.id" @click="doLogin(item)">
+      {{ item.id }}
+    </view>
+  </view>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        userList: [
+          { id: '90001', sign: 'eJwtjMsOgjAUBf*lWwzevlBI3LhwgTUYRd2wMbaY67NANRrjv1uB5ZnJmQ-J1Tp8mpokhIVABu1GbW4OS2xxDAC0F40*761FTRIqAMQ4ohQ6Y14Wa*O5lJL5R0cdXv8sYkLGXAjZV-Dou8Uwn6LLdtmbb5Z8UTVqtj2NgtJIa*-mEqy4UumjSuciOkzI9wfDQTBN' },
+          { id: '90002', sign: 'eJwtjFELgjAURv-LnkOuyzuc0ENRVBYo2bJXYctuka0lJUT-PVMfv3P4zoftt5n3Mo5FjHvARt0mbaqaTtRhCQB8EE99LawlzSI-AAhC4fvQG9NYcqbliMjbR09ruv2Z4AHKMYZiqFDZdg8VmDLFHSaZupz1Ona0tLPGquO7zDfzhUzMPU6L1fShJuz7A6ESMKI_' },
+          { id: '10001', sign: 'eJwtzF0LgjAYBeD-suuQd5tbInRjGF2kGa3upU17G8owkyL6782Py-MczvkSdTgHg*lITFgAZDVl1KbtscKJKQDQpXhqWzqHmsQ0BAgjSSnMjXk77Ix3IQTzi1l7bEaTXvlaRnx5wXr8rS6FKur0w4fH8XXS21zyJL1fG9btVCttn6Aubb6-ZdmG-P6UADBd' },
+          { id: '10002', sign: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwoYGBgZGUInilOzEgoLMFCUrQxMDAxMLM0NDA4hMakVBZlEqUNzU1NQIqAMiWpKZCxIzA4oam5sbWEJNyUwHmlvh7e*X52VhWelqnpJtmh9WGZZi6OxvmBRmll0eox9u4Znk4pNvnm*WkesYaqtUCwC*HDA6' },
+          { id: '10003', sign: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwoYGBgbGUInilOzEgoLMFCUrQxMDAxMLM0NDA4hMakVBZlEqUNzU1NQIqAMiWpKZCxIzA4oam5sbGUFNyUwHWZceo5-sGuzt7p-pGaNfWpUT6F0Q5OrqX2js5Z6aWRkUkuqSl1Xk6ePs6BaVbqtUCwDxBzDx' },
+          { id: '10004', sign: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwoYGBgYmUInilOzEgoLMFCUrQxOgqIWZoaEBRCa1oiCzKBUobmpqagTUAREtycwFiZkBRY3NzY2NoaZkpgPNdXb1TvMMSk0xSw33ci5N83YJCnKr8vfyMshIdUqO0S-PdUvL94r0NCitski3VaoFAL*XMJM_' },
+        ]
+      }
+    },
+    mounted () {
+      uni.setNavigationBarTitle({
+          title: '请选择登陆账号'
+      })
+    },
+    methods: {
+      doLogin (item) {
+        uni.showLoading()
+        this.$txim.login(item.id, item.sign, async res => {
+					console.log(res)
+          if (res.code == 0) {
+              // let tcRet = await this.$txcalling.login(this.$txim.sdkAppId, item.id, item.sign)
+							// console.log(tcRet)
+              this.$imUtils.setCurrentUser(item.id)
+              uni.navigateTo({
+                  url: './list'
+              })
+          }
+          uni.hideLoading()
+        })
+      }
+    },
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import "../components/common";
+  .login-container {
+    .login-items {
+      @extend .flex;
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid $br-color;
+    }
+  }
+</style>
+
+
 <style lang='scss' scoped>
 .user-passage {
   position: absolute;
