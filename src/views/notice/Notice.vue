@@ -187,6 +187,14 @@ export default {
         this.isDataLoading = false;
       });
     },
+    onPushNoticeClicked(content) {
+      pushNotice(content).then(resp => {
+        console.log(resp);
+        this.$Message.success('推送成功');
+      }).catch(err => {
+        this.$Message.error('推送失败');
+      })
+    }
   },
   mounted() {
     this.fetchNotices();
