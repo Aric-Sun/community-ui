@@ -6,19 +6,19 @@
     <div class="body">
       <div class="func">
         <Button
-          type='primary'
-          icon='md-add'
-          @click="onAddNoticeButtonClicked"
+            type='primary'
+            icon='md-add'
+            @click="onAddNoticeButtonClicked"
         >
-        添加新公告
+          添加新公告
         </Button>
       </div>
       <Table
-        border
-        class='notice-table'
-        :columns='columns'
-        :data='data'
-        :loading='isDataLoading'
+          border
+          class='notice-table'
+          :columns='columns'
+          :data='data'
+          :loading='isDataLoading'
       >
         <template slot-scope="{ row, index }" slot='action'>
           <Button type='success' style='margin-right: 5px' icon='md-paper-plane' @click="onPushNoticeClicked(row.content)">推送</Button>
@@ -28,18 +28,18 @@
       </Table>
       <div class="pager">
         <Page
-          :total='totalSize'
-          :page-size='pageSize'
-          show-elevator
-          @on-change='onPageChanged'
+            :total='totalSize'
+            :page-size='pageSize'
+            show-elevator
+            @on-change='onPageChanged'
         />
       </div>
     </div>
     <Modal
-      v-model="isModalShow"
-      :loading='isModalLoading'
-      :title='modalTitle'
-      @on-ok='onModalConfirmClicked'
+        v-model="isModalShow"
+        :loading='isModalLoading'
+        :title='modalTitle'
+        @on-ok='onModalConfirmClicked'
     >
       <Form ref='noticeForm' :model='noticeForm' :rules='noticeFormRules' :label-width='80'>
         <FormItem label='编号' v-if="modalMode === 2">
@@ -50,10 +50,10 @@
         </FormItem>
         <FormItem label='内容' prop='content'>
           <Input
-            v-model="noticeForm.content"
-            type='textarea'
-            placeholder="输入公告内容"
-            :autosize='{ minRows: 4, maxRows: 8 }'
+              v-model="noticeForm.content"
+              type='textarea'
+              placeholder="输入公告内容"
+              :autosize='{ minRows: 4, maxRows: 8 }'
           />
         </FormItem>
       </Form>
