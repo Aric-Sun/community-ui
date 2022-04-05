@@ -267,7 +267,10 @@ export default {
     this.getEmployeeInformation();
   },
   methods: {
-
+    handleContextMenu (row) {
+      const index = this.data.findIndex(item => item.userid === row.userid);
+      this.contextLine = index;
+    },
   }
 }
 </script>
