@@ -201,7 +201,51 @@ export default {
   }
 }
 </script>
+<template>
+    <div class="nav-right" v-if="userInfo.access_token" @mouseenter="enterHandler" @mouseleave="leaveHandler">
+    <span class = 'el-dropdown-link'>学习中心</span>
+    <span class="user">{{userInfo.username}}</span>
+    <img :src="userInfo.avatar" alt="">
+    <ul class="my_account" v-show="isShow">
+      <li>我的账户<i>></i></li>
+      <li>我的订单<i>></i></li>
+      <li>我的优惠券<i>></i></li>
+      <li>我的消息<span class="msg">({{userInfo.notice_num}})</span><i>></i></li>
+      <li>购物车<span class="count">({{userInfo.shop_cart_num}})</span></li>
+      <li>退出<i>></i></li>
+    </ul>
+  </div>
+  <!-- </el-dropdown> -->
+  <div class="nav-right" v-else>
+    <span>登录</span>
+     |  
+    <span>注册</span>
+  </div>
+</template>
 
+<script>
+  export default {
+    name: 'LuffyHeader',
+    data() {
+      return {
+        isShow: false 
+      }
+    },
+    methods: {
+      enterHandler() {
+        this.isShow = true;
+      },
+      leaveHandler() {
+        this.isShow = false;
+      }
+    },
+    computed: {
+      userInfo(){
+        return this.$store.state.userInfo;
+      }
+    }
+  };
+</script>
 <style scoped>
 
 .notice {
