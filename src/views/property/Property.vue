@@ -271,6 +271,29 @@ export default {
       const index = this.data.findIndex(item => item.userid === row.userid);
       this.contextLine = index;
     },
+    rePwd () {
+      this.formItem = JSON.parse(JSON.stringify(this.data[this.contextLine]));
+      this.$Modal.confirm({
+        title: '确认重置密码',
+        content: '是否确认重置'+this.formItem.name+'的密码？',
+        onOk: () => {
+          this.addData.userid = this.formItem.userid;
+          this.addData.position = this.formItem.position;
+          this.addData.username = this.formItem.name;
+          this.addData.department = this.formItem.department;
+          updataPropertyInformation(this.addData).then((res) => {
+            this.$Message.info('提交成功');
+            setTimeout(() => {
+              this.getEmployeeInformation();
+              // console.log(res);
+            }, 800);
+          });
+        },
+        onCancel: () => {
+          this.$Message.info('取消');
+        }
+      });
+    },
   }
 }
 </script>
