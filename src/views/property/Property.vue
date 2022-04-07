@@ -294,6 +294,10 @@ export default {
         }
       });
     },
+    onPageChanged(page) {
+      this.curPage = page;
+      this.getEmployeeInformation();
+    },
   }
 }
 </script>
