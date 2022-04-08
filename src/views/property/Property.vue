@@ -298,6 +298,51 @@ export default {
       this.curPage = page;
       this.getEmployeeInformation();
     },
+    getEmployeeInformation(){//获取员工信息
+      this.data =[];//清空数组
+      getDepartmentInformation().then((res) => {//获取部门信息
+        // console.log(res._embedded.departments);
+        for(let i in res.data._embedded.departments){
+          const idStr = res.data._embedded.departments[i]._links.self.href;
+          const id = idStr.split('/');
+          this.DepartmentData.push({
+            DepartmentId:id[4],
+            DepartmentName: res.data._embedded.departments[i].name
+          })
+        }
+        setTimeout(() => {//获取人员信息
+          getEmployeeInformations(this.curPage - 1, this.pageSize).then((res) => {
+            const page = res.data.page;
+            this.totalSize = page.totalElements;
+            for(let i in res.data._embedded.employees){
+              const idStr = res.data._embedded.employees[i]._links.self.href;//获取id
+              const id = idStr.split('/');
+              if(i == 0){
+                this.data = [{
+                  userid: id[4],
+                  name: res.data._embedded.employees[i].username,
+                  department:  res.data._embedded.employees[i].departmentId,
+                  position: res.data._embedded.employees[i].job,
+                  state: '工作中'//需要改动表格
+                }];//清空数组
+              }else{
+                this.data.push({userid: id[4],
+                  name: res.data._embedded.employees[i].username,
+                  department: res.data._embedded.employees[i].departmentId,
+                  position: res.data._embedded.employees[i].job,
+                  state: '工作中'//需要改动表格
+                });
+              }
+              for(let l = 0;l < this.DepartmentData.length;l++){
+                if(this.data[i].department == this.DepartmentData[l].DepartmentId){
+                  this.data[i].department = JSON.parse(JSON.stringify(this.DepartmentData[l].DepartmentName));
+                }
+              }
+            }
+          });
+        }, 100);
+      });
+    },
   }
 }
 </script>
