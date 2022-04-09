@@ -343,6 +343,18 @@ export default {
         }, 100);
       });
     },
+    searchEmployee(){//搜索员工函数
+      var j = 0;
+      for(var i = 0;i < this.data.length;i++){//查询员工
+        if(this.data[i].userid == this.searchUser || this.data[i].name == this.searchUser){
+          this.onEditEmployeeClicked(this.data[i].userid);//查到之后，调用修改函数
+          j = 1;
+        }
+      }
+      if(j == 0){
+        this.$Message.error('查无此人');
+      }
+    },
   }
 }
 </script>
