@@ -355,6 +355,19 @@ export default {
         this.$Message.error('查无此人');
       }
     },
+    //添加员工
+    onAddEmployeeClicked(){
+      this.mtitle = '添加员工';//更改模态框标题
+      // this.formItem = '';//清空一下
+      this.formItem= {// 模态框展示表单
+        name: '',// 姓名
+        position:'',// 职务
+        department: '',// 所属部门
+        state:'',// 状态
+      },
+          this.pmodel = 0;//0表示添加员工
+      this.mAdd = true;//打开模态框
+    },
   }
 }
 </script>
