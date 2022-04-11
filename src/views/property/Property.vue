@@ -368,6 +368,34 @@ export default {
           this.pmodel = 0;//0表示添加员工
       this.mAdd = true;//打开模态框
     },
+    //修改
+    onEditEmployeeClicked(userid){
+      var i = 0;
+      for(i;i < this.data.length;i++){//找一下需要编辑的员工
+        if(this.data[i].userid == userid){
+          break;
+        }
+      }
+      this.formItem = JSON.parse(JSON.stringify(this.data[i]));
+      // console.log(this.formItem);
+      if(this.formItem.department == "设备管理部"){
+        this.formItem.department = '10';
+      }else if(this.formItem.department == "事务管理部"){
+        this.formItem.department = '5';
+      }else if(this.formItem.department == "安全保卫部"){
+        this.formItem.department = '4';
+      }else if(this.formItem.department == "保洁绿化部"){
+        this.formItem.department = '6';
+      }else if(this.formItem.department == "客户服务部"){
+        this.formItem.department = '7';
+      }else if(this.formItem.department == "招商开发部"){
+        this.formItem.department = '8';
+      }
+      this.mtitle = '编辑员工信息';
+      this.pmodel = 1;//1表示修改员工信息
+      this.mAdd = true;//打开模态框
+
+    },
   }
 }
 </script>
