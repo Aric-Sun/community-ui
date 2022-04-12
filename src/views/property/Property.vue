@@ -396,6 +396,12 @@ export default {
       this.mAdd = true;//打开模态框
 
     },
+    //删除
+    del(){
+      console.log(this.data[this.delIndex].userid);//被删除的userid传入后端，
+      this.data.splice(this.delIndex, 1);//从表格中去除
+      this.mDelete = false;//关闭模态框
+    },
   }
 }
 </script>
