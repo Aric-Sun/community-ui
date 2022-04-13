@@ -402,6 +402,23 @@ export default {
       this.data.splice(this.delIndex, 1);//从表格中去除
       this.mDelete = false;//关闭模态框
     },
+    remove (index) {
+      // this.mDelete = true;//打开模态框。
+      // this.formItem = this.data[index];//显示被删除者的信息
+      // console.log(index);
+      // this.delIndex = index;
+      this.$Modal.confirm({
+        title: '删除',
+        content: '确定删除'+this.data[index].name+'?',
+        onOk: () => {
+          this.deleteOk(index);
+          this.data.splice(index, 1);
+        },
+        onCancel: () => {
+          this.$Message.info('cancel');
+        }
+      });
+    },
   }
 }
 </script>
