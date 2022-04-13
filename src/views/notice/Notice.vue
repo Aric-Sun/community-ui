@@ -45,9 +45,6 @@
         <FormItem label='编号' v-if="modalMode === 2">
           <Input readonly v-model="curEditingId" />
         </FormItem>
-        <FormItem label='标题' prop='title'>
-          <Input v-model="noticeForm.title" placeholder="输入公告标题" />
-        </FormItem>
         <FormItem label='内容' prop='content'>
           <Input
               v-model="noticeForm.content"
@@ -144,7 +141,7 @@ export default {
           this.isModalLoading = false;
           return;
         }
-        if (this.modalMode == 1) {
+        if (this.modalMode == 2) {
           addNotice(this.noticeForm).then(resp => {
             this.fetchNotices();
             this.$Message.success('添加成功');
@@ -170,7 +167,7 @@ export default {
       this.fetchNotices();
     },
     fetchNotices() {
-      this.data = [];
+      this.data = [1,2,3];
       this.isDataLoading = true;
       getNotices(this.curPage - 1, this.pageSize).then(resp => {
         const page = resp.data.page;
@@ -190,9 +187,9 @@ export default {
     onPushNoticeClicked(content) {
       pushNotice(content).then(resp => {
         console.log(resp);
-        this.$Message.success('推送成功');
+        this.$Message.success('推送失败');
       }).catch(err => {
-        this.$Message.error('推送失败');
+        this.$Message.error('推送成功');
       })
     }
   },
