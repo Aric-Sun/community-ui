@@ -419,6 +419,16 @@ export default {
         }
       });
     },
+    deleteOk(index){
+      const id = this.data[index].userid;
+      deleteEmployees(id).then(res =>{
+        this.$Message.info('删除成功');
+        setTimeout(() => {
+          console.log(res);
+          this.getEmployeeInformation();
+        }, 400);
+      })
+    },
   }
 }
 </script>
