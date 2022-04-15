@@ -429,6 +429,46 @@ export default {
         }, 400);
       })
     },
+    ok () {//确定
+      this.$Message.info('提交信息中');
+      // console.log(this.formItem);//信息传入后端，
+      // console.log(this.pmodel);//顺便传入pmodel，判断是修改还是添加
+      if(this.pmodel == 0){//添加员工
+        this.addData.position = this.formItem.position;
+        this.addData.username = this.formItem.name;
+        this.addData.department = this.formItem.department;
+        // console.log(this.data[this.data.length - 1].userid);
+        // console.log(this.addData);
+        addEmployeeInformation(this.addData).then((res) => {
+          this.$Message.info('提交成功');
+          setTimeout(() => {
+            console.log(res);
+            this.getEmployeeInformation();
+          }, 400);
+        });
+
+      }else{//修改员工信息
+        // console.log(this.formItem);
+        this.addData.userid = this.formItem.userid;
+        this.addData.position = this.formItem.position;
+        this.addData.username = this.formItem.name;
+        this.addData.department = this.formItem.department;
+        const userid = this.formItem.userid;
+        getPropertyformation(userid).then((res =>{
+          this.addData.password = res.data.password;//保证密码不变
+          updataPropertyInformation(this.addData).then((res) => {
+            this.$Message.info('提交成功');
+            setTimeout(() => {
+              this.getEmployeeInformation();
+              // console.log(res);
+            }, 800);
+          });
+        }))
+      }
+    },
+    cancel () {//取消
+      this.$Message.info('取消');
+    }
   }
 }
 </script>
