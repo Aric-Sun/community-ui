@@ -18,3 +18,17 @@ export function addDepartments({ departmentName }) {
         data: { 'name': departmentName}
     });
 }
+//修改
+export function updataDepartments({
+                                      id,
+                                      departmentName,
+                                  }) {
+    // console.log(departmentName + "001");
+    return request({
+        url: `/departments/${id}`,
+        method: 'PUT',
+        data: { //传给后端的json,参数根据具体信息修改
+            'name': departmentName,
+        }
+    })
+}
