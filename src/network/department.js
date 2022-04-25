@@ -32,3 +32,10 @@ export function updataDepartments({
         }
     })
 }
+//删除
+export function deleteDepartments(id) {
+    return request({
+        url: `/departments/${id}`,
+        method: 'DELETE'
+    });
+}
