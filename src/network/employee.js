@@ -9,3 +9,10 @@ export function getEmployeeInformation() {
     method: 'get',
   });
 }
+export function getEmployeeInformations(page, size) {
+  return request({
+    url: "/employees",
+    method: 'get',
+    params: { page, size }
+  });
+}
