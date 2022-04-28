@@ -16,3 +16,21 @@ export function getEmployeeInformations(page, size) {
     params: { page, size }
   });
 }
+export function updateEmployeeInformation({
+                                            userid,
+                                            department,
+                                            username,
+                                            password
+                                          }) {
+  return request({
+    url: "/employees/1",
+    method: 'put',
+    data: { //传给后端的json,参数根据具体信息修改
+      'id': userid,
+      'departmentId': department,
+      'username': username,
+      'password': password,
+      'job': "testJob"
+    }
+  })
+}
