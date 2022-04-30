@@ -34,3 +34,21 @@ export function updateEmployeeInformation({
     }
   })
 }
+//添加员工信息
+export function addEmployeeInformation({
+                                           department,
+                                           username,
+                                           position,
+                                           password
+                                       }) {
+    return request({
+        url: "/employees",
+        method: 'POST',
+        data: { //传给后端的json,参数根据具体信息修改
+            'departmentId': department,
+            'username': username,
+            'job': position,
+            'password':password
+        }
+    })
+}
