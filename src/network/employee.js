@@ -52,3 +52,11 @@ export function addEmployeeInformation({
         }
     })
 }
+export function getDepartmentName(
+    departmentId
+) {
+    return request({
+        url: "/departments/" + departmentId,
+        method: 'get'
+    })
+}
