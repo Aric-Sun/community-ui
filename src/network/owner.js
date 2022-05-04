@@ -15,3 +15,11 @@ export function getOwnerInfo(id) {
     method: 'GET'
   });
 }
+// 添加新业主
+export function addOwner({ name, sex, birthYear, buildingRoom, status, userId, createTime }) {
+  return request({
+    url: '/usersInfo',
+    method: 'POST',
+    data: { name, sex, birthYear, buildingRoom, status, userId, createTime }
+  });
+}
