@@ -23,3 +23,11 @@ export function addOwner({ name, sex, birthYear, buildingRoom, status, userId, c
     data: { name, sex, birthYear, buildingRoom, status, userId, createTime }
   });
 }
+// 编辑指定业主的信息
+export function editOwnerInfo({ id, name, sex, birthYear, buildingRoom, userId, createTime }) {
+  return request({
+    url: `/usersInfo/${id}`,
+    method: 'PUT',
+    data: { name, sex, birthYear, buildingRoom, userId, createTime }
+  });
+}
