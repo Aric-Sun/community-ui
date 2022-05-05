@@ -31,3 +31,13 @@ export function editOwnerInfo({ id, name, sex, birthYear, buildingRoom, userId, 
     data: { name, sex, birthYear, buildingRoom, userId, createTime }
   });
 }
+// 查询业主信息
+export function queryOwnersInfo({ type, id }) {
+  const queryUrl = '/usersInfo/search/findByUserId';
+  const queryData = { id };
+  return request({
+    url: `${queryUrl}?userId=${id}`,
+    method: 'GET',
+    // data: queryData
+  });
+}
