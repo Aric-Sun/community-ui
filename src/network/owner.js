@@ -41,3 +41,10 @@ export function queryOwnersInfo({ type, id }) {
     // data: queryData
   });
 }
+// 删除指定的业主信息
+export function deleteOwner(id) {
+  return request({
+    url: `/usersInfo/${id}`,
+    method: 'DELETE'
+  });
+}
