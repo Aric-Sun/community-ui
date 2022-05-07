@@ -43,6 +43,7 @@ export function queryOwnersInfo({ type, id }) {
 }
 // 删除指定的业主信息
 export function deleteOwner(id) {
+  console.log("waiting...");
   return request({
     url: `/usersInfo/${id}`,
     method: 'DELETE'
