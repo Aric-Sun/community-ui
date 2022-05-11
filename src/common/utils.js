@@ -35,3 +35,17 @@ export const formatDate = date => {
 
 // 是否使用伪数据
 export const MOCK = false;
+
+
+/**
+ * 判断传入参数是什么类型
+ * @param {*} o 传入参数
+ * @return 传入参数的类型
+ */
+const TypeJudge = (o) => {
+  const types = ["String", "Number", "Boolean", "Function", "Null", "Undefined", "Object", "Array", "Date", "RegExp", "Error", "Symbol", "Promise", "Set"]
+  const curType = Object.prototype.toString.call(o).slice(8, -1)
+  if (types.indexOf(curType) > -1) {
+    return curType
+  }
+}
