@@ -86,6 +86,21 @@ export default {
   },
   methods: {
     changeSlider() {
+      // 定义一个混入对象
+      const myMixin = {
+        created: function () {
+          this.startmixin()
+        },
+        methods: {
+          startMixin: function () {
+            document.write("欢迎来到混入实例");
+          }
+        }
+      };
+      const Component = Vue.extend({
+        mixins: [myMixin]
+      });
+      const component = new Component();
       // 判断
       const identity = this.$store.getters.getIdentity
       if (identity == '物业经理') {
@@ -99,6 +114,13 @@ export default {
         this.isWuye = true;
         console.log(identity);
       }
+      var vm = new Vue({
+        el: '#databinding',
+        data: {
+        },
+        methods : {
+        },
+      });
     },
     // 路由跳转
     gotoFdetection() {
