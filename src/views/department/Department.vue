@@ -176,6 +176,9 @@ export default {
     addOk() {
       this.dateDepartment.departmentName = this.addDepartmentForm.departmentName;
       addDepartments(this.dateDepartment).then(resp => {
+        if (this.preventRepeatReuqest) {
+          return
+        }
         this.$Message.success('添加成功');
       }).catch(err => {
         console.log(err)
