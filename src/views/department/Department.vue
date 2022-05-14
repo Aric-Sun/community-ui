@@ -186,6 +186,17 @@ export default {
         this.getDepartmentInformation();
       });
     },
+    remainingTime(){
+      clearInterval(this.timer);
+      this.timer = setInterval(() => {
+        this.countNum --;
+        if (this.countNum == 0) {
+          clearInterval(this.timer);
+          this.showAlert = true;
+          this.alertText = 'timeout';
+        }
+      }, 1000);
+    },
     addDepartment() {
       this.addModal = true;
     },
