@@ -152,6 +152,36 @@ export default {
         name:'',
         departmentId:'',
       }],
+      btnLoading: false,
+      btnDisabled: false,
+      loading: true,
+      editDialogVisible: false,
+      addDialogVisible: false, //添加弹框是否显示
+      total: 0, //总共多少条数据
+      departmentData: [], //表格数据
+      queryMap: { pageNum: 1, pageSize: 7, name: "" }, //查询对象
+      addRuleForm: {}, //添加表单数据
+      editRuleForm: {}, //修改表单数据
+      deans: [], //所有系主任
+      addRules: {
+        name: [
+          { required: true, message: "请输入部门名称", trigger: "blur" },
+          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" }
+        ],
+        address: [
+          { required: true, message: "请输入办公地址", trigger: "blur" },
+          { min: 4, max: 12, message: "长度在 4 到 12 个字符", trigger: "blur" }
+        ],
+        mgrId: [{ required: true, message: "请选择系主任", trigger: "blur" }],
+        phone: [
+          {
+            required: true,
+            message: "请输入联系方式",
+            validator: checkPhone,
+            trigger: "blur"
+          }
+        ]
+      } //添加验证
     };
   },
   methods: {
