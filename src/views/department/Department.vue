@@ -291,6 +291,34 @@ export default {
       this.addDepartmentForm.departmentName = "";
       this.addDepartmentForm.headName = "";
     },
+    /**
+     * 加载部门表格
+     */
+    downExcel() {
+      var $this = this;
+      const res = axios
+          .request({
+            url: "/department/excel",
+            method: "post",
+            responseType: "blob"
+          })
+          .then(res => {
+            if (res.headers["content-type"] === "application/json") {
+              return $this.$message.error(
+                  "Subject does not have permission [department:export]"
+              );
+            }
+            const data = res.data;
+            let url = window.URL.createObjectURL(data); // 将二进制文件转化为可访问的url
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.href = url;
+            a.download = "部门列表.xls";
+            a.click();
+            window.URL.revokeObjectURL(url);
+          });
+    },
+
   },
   mounted(){
     this.getDepartmentInformation();
