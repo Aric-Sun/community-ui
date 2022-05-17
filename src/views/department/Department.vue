@@ -318,7 +318,115 @@ export default {
             window.URL.revokeObjectURL(url);
           });
     },
-
+    //搜索
+    search() {
+      this.queryMap.pageNum = 1;
+      this.getDepartmentList();
+    },
+    //删除部门
+    async del(id) {
+      var res = await this.$confirm(
+          "此操作将永久删除该用户, 是否继续?",
+          "提示",
+          {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            type: "warning"
+          }
+      ).catch(() => {
+        this.$message({
+          type: "info",
+          message: "已取消删除"
+        });
+      });
+      if (res == "confirm") {
+        const { data: res } = await this.$http.delete(
+            "department/delete/" + id
+        );
+        if (res.code == 200) {
+          this.$message.success("部门删除成功");
+          this.getDepartmentList();
+        } else {
+          this.$message.error(res.msg);
+        }
+      }
+    },
+    //更新用户
+    async update() {
+      this.$refs.editRuleFormRef.validate(async valid => {
+        if (!valid) {
+          return;
+        } else {
+          (this.btnLoading = true), (this.btnDisabled = true);
+          const { data: res } = await this.$http.put(
+              "department/update/" + this.editRuleForm.id,
+              this.editRuleForm
+          );
+          if (res.code == 200) {
+            this.$notify({
+              title: "成功",
+              message: "部门信息更新",
+              type: "success"
+            });
+            this.editRuleForm = {};
+            this.getDepartmentList();
+            this.btnDisabled = false;
+            this.btnLoading = false;
+          } else {
+            this.$message.error("部门信息更新失败:" + res.msg);
+          }
+          this.editDialogVisible = false;
+        }
+      });
+    },
+    //编辑
+    async edit(id) {
+      const { data: res } = await this.$http.get("department/edit/" + id);
+      if (res.code == 200) {
+        this.editRuleForm = res.data;
+      } else {
+        return this.$message.error("部门信息编辑失败" + res.msg);
+      }
+      this.editDialogVisible = true;
+    },
+    //添加
+    add() {
+      this.$refs.addRuleFormRef.validate(async valid => {
+        if (!valid) {
+          return;
+        } else {
+          (this.btnLoading = true), (this.btnDisabled = true);
+          const { data: res } = await this.$http.post(
+              "department/add",
+              this.addRuleForm
+          );
+          if (res.code == 200) {
+            this.$message.success("部门添加成功");
+            this.addRuleForm = {};
+            this.getDepartmentList();
+          } else {
+            return this.$message.error("部门添加失败:" + res.msg);
+          }
+          this.addDialogVisible = false;
+          (this.btnLoading = false), (this.btnDisabled = false);
+        }
+      });
+    },
+    //加载系别列表
+    async getDepartmentList() {
+      const { data: res } = await this.$http.get(
+          "department/findDepartmentList",
+          {
+            params: this.queryMap
+          }
+      );
+      if (res.code !== 200) {
+        return this.$message.error("获取用户列表失败");
+      } else {
+        this.total = res.data.total;
+        this.departmentData = res.data.rows;
+      }
+    },
   },
   mounted(){
     this.getDepartmentInformation();
