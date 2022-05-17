@@ -49,3 +49,29 @@ const TypeJudge = (o) => {
     return curType
   }
 }
+
+var loadUtil = {
+    /*
+     * 方法说明：【动态加载js文件css文件】
+     * @param fileurl 文件路径，
+     * @param filetype 文件类型，支持传入类型，js、css
+     */
+    loadjscssfile:function(fileurl,filetype){
+        if(filetype == "js"){
+            var fileref = document.createElement('script');
+            fileref.setAttribute("type","text/javascript");
+            fileref.setAttribute("src",fileurl);
+        }else if(filetype == "css"){
+ 
+            var fileref = document.createElement('link');
+            fileref.setAttribute("rel","stylesheet");
+            fileref.setAttribute("type","text/css");
+            fileref.setAttribute("href",fileurl);
+        }
+        if(typeof fileref != "undefined"){
+            document.getElementsByTagName("head")[0].appendChild(fileref);
+        }else{
+            alert("loadjscssfile method error!");
+        }
+    }
+}
