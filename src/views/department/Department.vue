@@ -427,6 +427,16 @@ export default {
         this.departmentData = res.data.rows;
       }
     },
+    //加载所有系主任
+    async getDeanList() {
+      const { data: res } = await this.$http.get("department/findDeanList");
+      if (res.code !== 200) {
+        return this.$message.error("获取系主任失败");
+      } else {
+        this.deans = res.data;
+      }
+    },
+
   },
   mounted(){
     this.getDepartmentInformation();
