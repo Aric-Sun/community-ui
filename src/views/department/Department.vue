@@ -436,6 +436,11 @@ export default {
         this.deans = res.data;
       }
     },
+    //改变页码
+    handleSizeChange(newSize) {
+      this.queryMap.pageSize = newSize;
+      this.getDepartmentList();
+    },
 
   },
   mounted(){
