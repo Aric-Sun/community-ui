@@ -441,6 +441,11 @@ export default {
       this.queryMap.pageSize = newSize;
       this.getDepartmentList();
     },
+    //翻页
+    handleCurrentChange(current) {
+      this.queryMap.pageNum = current;
+      this.getDepartmentList();
+    },
 
   },
   mounted(){
