@@ -446,6 +446,11 @@ export default {
       this.queryMap.pageNum = current;
       this.getDepartmentList();
     },
+    //关闭弹出框
+    closeAddDialog() {
+      this.$refs.addRuleFormRef.clearValidate();
+      this.addRuleForm = {};
+    },
 
   },
   mounted(){
