@@ -451,7 +451,11 @@ export default {
       this.$refs.addRuleFormRef.clearValidate();
       this.addRuleForm = {};
     },
-
+    //关闭弹出框
+    closeEditDialog() {
+      this.$refs.editRuleFormRef.clearValidate();
+      this.editRuleForm = {};
+    }
   },
   mounted(){
     this.getDepartmentInformation();
