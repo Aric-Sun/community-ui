@@ -21,3 +21,14 @@ import { request } from "./request";
       // }
     })
   }
+  
+  export function getExt(filename) {
+    if (typeof filename == 'string') {
+        return filename
+            .split('.')
+            .pop()
+            .toLowerCase()
+    } else {
+        throw new Error('filename must be a string type')
+    }
+}
