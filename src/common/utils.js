@@ -168,3 +168,10 @@ export const downloadImage = (imgsrc, name) => { // 下载图片地址和图片�
     }
     image.src = imgsrc
 }
+// 随机颜色
+const randomColor = (min, max) => {
+    const r = randomNum(min, max)
+    const g = randomNum(min, max)
+    const b = randomNum(min, max)
+    return `rgb(${r},${g},${b})`
+}
