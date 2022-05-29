@@ -854,6 +854,14 @@ export default {
         },
       ]
     },
+    rotate (index) {
+      this.deg[index] += 90
+      document.getElementsByTagName('img')[index].style.transform = `rotate(${this.deg[index]}deg)`
+      // this.deg[index] === 360 ? this.deg[index] = 0 : ''
+      // console.log(this.imgNow)
+      // console.log(this.deg)
+      console.log(this.confirm())
+    },
   },
   mounted() {
     this.addPoints();
