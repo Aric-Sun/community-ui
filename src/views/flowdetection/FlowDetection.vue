@@ -182,6 +182,19 @@ export default {
       };
       option && myChart.setOption(option);
     },
+    // 保存成svg图片
+    saveToSvg () {
+      this.graph.toSVG(dataUri => {
+        // 下载
+        DataUri.downloadDataUri(DataUri.svgToDataUrl(dataUri), 'chart.svg')
+        // }, {
+        //   preserveDimensions: {
+        //     width: 800,
+        //     height: 800
+        //   }
+        // })
+      })
+    },
     lineHistogram() {
       var chartDom = document.getElementById("lineHistogramCss");
       var myChart = echarts.init(chartDom);
