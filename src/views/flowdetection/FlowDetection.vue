@@ -364,6 +364,10 @@ export default {
       option && myChart.setOption(option);
     },
   },
+  // 是否全屏
+  handleFull (value) {
+    this.visible = value
+  },
   mounted() {
     // this.lineHistogram();
     this.echartsRadar();
