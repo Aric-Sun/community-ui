@@ -85,3 +85,67 @@
   };
 
 </script>
+<style lang="less" scoped>
+  .contents{
+    border: 1px solid #ccc;
+    border-radius: 10px 0px 10px 0px;
+    padding: 10px;
+    width: 189px;
+  }
+  .imgs{
+    width: 72px;
+    position: relative;
+  }
+  .imgs1{
+    position: absolute;
+    width: 40px; 
+    /* top: 20px;  */
+  }
+  .imgs2{
+    position: absolute;
+    width: 85px;
+    /* top: 20px; */
+    left: -23px;
+  }
+  .noticeSelf {
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: lightblue;
+    margin: 10px;
+  }
+
+  .notice1-info {
+    background-color: white;
+  }
+
+  .notice1-warning {
+    background-color: rgb(219, 194, 125);
+  }
+  @keyframes fade-in {  
+    0% {opacity: 0;
+      transform: translateX(-300px);
+    }
+    40% {opacity: 0;}
+    100% {opacity: 1;
+      transform: translateX(0px);}
+  }   
+  .notice1-info {    
+      animation: fade-in;/*动画名称*/  
+      animation-duration: 1.5s;/*动画持续时间*/  
+  } 
+
+  .notice1-leave{
+    animation: fade-out;/*动画名称*/  
+    animation-duration: 1.5s;/*动画持续时间*/  
+  }
+  @keyframes fade-out {  
+    100% {opacity: 1;
+      transform: translateX(0px);
+    }
+    40% {opacity: 0;}
+    100% {opacity: 0;
+      transform: translateX(-300px);}
+  } 
+</style>
