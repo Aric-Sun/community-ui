@@ -204,3 +204,14 @@ export const toHump = (name) => {
         return letter.toUpperCase();
     });
 }
+function hasPermission(permission) {
+    const settingsStore = useSettingsStore()
+    const userStore = useUserStore()
+    if (settingsStore.app.enablePermission) {
+        return userStore.permissions.some(v => {
+            return v === permission
+        })
+    } else {
+        return true
+    }
+}
