@@ -224,6 +224,19 @@ export default {
   export default {
     name: 'LuffyHeader',
     data() {
+      const setImage = (e) => {
+        const file = e.target.files[0];
+        if (!file.type.includes("image/")) {
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          dialogVisible.value = true;
+          imgSrc.value = event.target.result;
+          cropper.value && cropper.value.replace(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      };
       return {
         isShow: false 
       }
