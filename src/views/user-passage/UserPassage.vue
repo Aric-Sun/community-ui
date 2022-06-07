@@ -147,8 +147,21 @@ export default {
           }
           uni.hideLoading()
         })
-      }
-    },
+      },
+      // 设置标记日期
+      setMarksDate (list) {
+        list.forEach(mark => {
+          if (this.datePoint.findIndex(item => item.date === mark)) {
+            const index = this.datePoint.findIndex(item => item.date === mark)
+            if (index > -1) {
+              this.datePoint[index].mark = true
+            }
+          }
+        })
+        console.log('...........this.datePoint', this.datePoint)
+      },
+
+    }
   }
 </script>
 
