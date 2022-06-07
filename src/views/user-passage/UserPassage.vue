@@ -166,7 +166,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../components/common";
   .login-container {
     .login-items {
       @extend .flex;
