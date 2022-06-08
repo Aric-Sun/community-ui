@@ -160,6 +160,21 @@ export default {
         })
         console.log('...........this.datePoint', this.datePoint)
       },
+      // 获取年月日
+      getYearMonthDay (date) {
+        // 兼容 ios 设备（ios 不支持短横线格式的日期）
+        const _date = JSON.parse(JSON.stringify(date)).replace(/-/g, '/')
+        if (_date && _date !== '') {
+          const year = dateFormat(new Date(Date.parse(_date)), 'yyyy')
+          const month = dateFormat(new Date(Date.parse(_date)), 'MM')
+          const day = dateFormat(new Date(Date.parse(_date)), 'dd')
+          return {
+            year,
+            month,
+            day
+          }
+        }
+      },
 
     }
   }
