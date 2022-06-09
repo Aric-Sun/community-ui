@@ -175,6 +175,15 @@ export default {
           }
         }
       },
+      // 根据日期滑动到对应位置
+      sliderTo (date) {
+        // 如果滑倒其他年份，重新计算日期位置
+        const year = this.getYearMonthDay(date).year
+        this.currentYear = year
+        this.computedDaysByYear(year)
+        const index = this.getIndexByDateOfYear(date)
+        this.value = index
+      },
 
     }
   }
