@@ -184,6 +184,20 @@ export default {
         const index = this.getIndexByDateOfYear(date)
         this.value = index
       },
+      // 通过位置找出日期
+      getDateByIndexOfYear (index) {
+        if (this.datePoint.length > 0) {
+          let data = null
+          if (index === this.datePoint.length) {
+            data = this.datePoint[this.datePoint.length - 1]
+          } else {
+            data = this.datePoint[index]
+          }
+          if (data && data.date) {
+            return data.date
+          }
+        }
+      },
 
     }
   }
