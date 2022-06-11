@@ -198,6 +198,10 @@ export default {
           }
         }
       },
+      // 找出某个日期在一年中的位置
+      getIndexByDateOfYear (date) {
+        return this.datePoint.findIndex(item => item.date === date)
+      },
 
     }
   }
