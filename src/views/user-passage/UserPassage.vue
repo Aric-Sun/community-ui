@@ -202,6 +202,11 @@ export default {
       getIndexByDateOfYear (date) {
         return this.datePoint.findIndex(item => item.date === date)
       },
+      // 设置日期元素（一年中所有日期的位置及特殊日期标注）
+      setCalendarAndPosition (year, markDate) {
+        const list = createCalendarAndPosition(year, markDate)
+        this.datePoint = list
+      },
 
     }
   }
