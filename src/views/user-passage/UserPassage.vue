@@ -207,6 +207,11 @@ export default {
         const list = createCalendarAndPosition(year, markDate)
         this.datePoint = list
       },
+      // 切换年份计算一年有多少天，设置 max 值
+      computedDaysByYear (year) {
+        this.max = numberOfDays(year)
+        this.setCalendarAndPosition(year, this.markDate)
+      },
 
     }
   }
