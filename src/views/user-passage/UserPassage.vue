@@ -212,6 +212,9 @@ export default {
         this.max = numberOfDays(year)
         this.setCalendarAndPosition(year, this.markDate)
       },
+      handleClick () {
+        this.sliderTo('2020-02-29')
+      },
 
     }
   }
