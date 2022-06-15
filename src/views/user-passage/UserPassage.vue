@@ -215,6 +215,20 @@ export default {
       handleClick () {
         this.sliderTo('2020-02-29')
       },
+      /**
+       * 判断某个日期是否有可能存在于一个日期列表中
+       * dateIsExistList ('2018-01-01', ['2018-05-06', '2018-07-08']) // true
+       * dateIsExistList ('2018-01-01', ['2020-05-06', '2020-07-08']) // false
+       */
+      dateIsExistList (date, dateList) {
+        const year = this.getYearMonthDay(date).year
+        const _dateList = dateList.map(_ => this.getYearMonthDay(_).year)
+        if (_dateList.indexOf(year) > -1) {
+          return true
+        } else {
+          return false
+        }
+      },
 
     }
   }
