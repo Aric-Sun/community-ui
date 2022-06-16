@@ -229,7 +229,44 @@ export default {
           return false
         }
       },
-
+      // 判断一个日期在一个日期列表中，离哪一个日期更近
+      judjeMoreNearly (date, dateList) {
+        let result = null
+        const dateParse = Date.parse(date.replace(/-/g, '/'))
+        const dateListParse = dateList.map(_ => Date.parse(_.replace(/-/g, '/')))
+        dateListParse.push(dateParse)
+        dateListParse.sort((a, b) => {
+          return a - b
+        })
+        const index = dateListParse.indexOf(dateParse)
+        const before = dateListParse[index - 1]
+        const after = dateListParse[index + 1]
+        if (before && after) {
+          if (Math.abs(dateParse - before) > Math.abs(dateParse - after)) {
+            result = after
+          } else {
+            result = before
+          }
+        } else if (before || after) {
+          if (before) {
+            result = before
+          } else if (after) {
+            result = after
+          }
+        }
+        return dateFormat(new Date(result), 'yyyy-MM-dd')
+      },
+      handleInput (val) {
+        this.dateValue = this.getDateByIndexOfYear(val)
+        this.$emit('input', val, this.dateValue)
+      },
+      handleChange (val) {
+        this.$emit('change', val, this.dateValue)
+        if (this.lock) {
+          const nearlyDate = this.judjeMoreNearly(this.dateValue, this.lockDate)
+          this.sliderTo(nearlyDate)
+        }
+      }
     }
   }
 </script>
