@@ -1,25 +1,62 @@
-import axios from "axios";
+import { request } from "./request";
+import { MOCK } from 'common/utils';
 
-// 对axios二次封装
-export function request(config) {
-  const instance = axios.create({
-    baseURL: "/api",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    timeout: 800,
+/**
+ * 获取公告列表
+ * @param {number} page 页数
+ * @param {number} size 大小
+ */
+export function getNotices(page, size) {
+  return request({
+    url: '/newses',
+    method: 'GET',
+    params: { page, size }
   });
+}
 
-  //(2.2).响应拦截;
-  instance.interceptors.response.use(
-    (res) => {
-      return res.data;
-    },
-    (err) => {
-      console.log(err);
-      throw err;
-    }
-  );
+/**
+ * 添加新公告
+ * @param {{title: string, content: string}} param0 请求体
+ */
+export function addNotice({ title, content }) {
+  return request({
+    url: '/newses',
+    method: 'POST',
+    data: JSON.stringify({ title, content })
+  });
+}
 
-  return instance(config);
+/**
+ * 更新指定编号的公告信息
+ * @param {{id: number, title: string, content: string}} param0 请求体
+ */
+export function editNotice({ id, title, content }) {
+  return request({
+    url: `/newses/${id}`,
+    method: 'PUT',
+    data: { title, content }
+  });
+}
+
+/**
+ * 删除指定编号的公告
+ * @param {number} id 公告ID
+ */
+export function deleteNotice(id) {
+  return request({
+    url: `/newses/${id}`,
+    method: 'DELETE'
+  });
+}
+
+/**
+ * 推送指定的公告
+ * @param {number} id 公告ID
+ */
+export function pushNotice(content) {
+  return request({
+    // url: `/notices/${id}/push`,
+    url: `/custom/news/sendAll?message=${content}`,
+    method: 'GET'
+  });
 }

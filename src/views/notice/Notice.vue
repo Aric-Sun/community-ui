@@ -6,19 +6,19 @@
     <div class="body">
       <div class="func">
         <Button
-            type='primary'
-            icon='md-add'
-            @click="onAddNoticeButtonClicked"
+          type='primary'
+          icon='md-add'
+          @click="onAddNoticeButtonClicked"
         >
-          添加新公告
+        添加新公告
         </Button>
       </div>
       <Table
-          border
-          class='notice-table'
-          :columns='columns'
-          :data='data'
-          :loading='isDataLoading'
+        border
+        class='notice-table'
+        :columns='columns'
+        :data='data'
+        :loading='isDataLoading'
       >
         <template slot-scope="{ row, index }" slot='action'>
           <Button type='success' style='margin-right: 5px' icon='md-paper-plane' @click="onPushNoticeClicked(row.content)">推送</Button>
@@ -28,29 +28,32 @@
       </Table>
       <div class="pager">
         <Page
-            :total='totalSize'
-            :page-size='pageSize'
-            show-elevator
-            @on-change='onPageChanged'
+          :total='totalSize'
+          :page-size='pageSize'
+          show-elevator
+          @on-change='onPageChanged'
         />
       </div>
     </div>
     <Modal
-        v-model="isModalShow"
-        :loading='isModalLoading'
-        :title='modalTitle'
-        @on-ok='onModalConfirmClicked'
+      v-model="isModalShow"
+      :loading='isModalLoading'
+      :title='modalTitle'
+      @on-ok='onModalConfirmClicked'
     >
       <Form ref='noticeForm' :model='noticeForm' :rules='noticeFormRules' :label-width='80'>
         <FormItem label='编号' v-if="modalMode === 2">
           <Input readonly v-model="curEditingId" />
         </FormItem>
+        <FormItem label='标题' prop='title'>
+          <Input v-model="noticeForm.title" placeholder="输入公告标题" />
+        </FormItem>
         <FormItem label='内容' prop='content'>
           <Input
-              v-model="noticeForm.content"
-              type='textarea'
-              placeholder="输入公告内容"
-              :autosize='{ minRows: 4, maxRows: 8 }'
+            v-model="noticeForm.content"
+            type='textarea'
+            placeholder="输入公告内容"
+            :autosize='{ minRows: 4, maxRows: 8 }'
           />
         </FormItem>
       </Form>
@@ -141,7 +144,7 @@ export default {
           this.isModalLoading = false;
           return;
         }
-        if (this.modalMode == 2) {
+        if (this.modalMode == 1) {
           addNotice(this.noticeForm).then(resp => {
             this.fetchNotices();
             this.$Message.success('添加成功');
@@ -167,7 +170,7 @@ export default {
       this.fetchNotices();
     },
     fetchNotices() {
-      this.data = [1,2,3];
+      this.data = [];
       this.isDataLoading = true;
       getNotices(this.curPage - 1, this.pageSize).then(resp => {
         const page = resp.data.page;
@@ -187,9 +190,9 @@ export default {
     onPushNoticeClicked(content) {
       pushNotice(content).then(resp => {
         console.log(resp);
-        this.$Message.success('推送失败');
+        this.$Message.success('推送成功');
       }).catch(err => {
-        this.$Message.error('推送成功');
+        this.$Message.error('推送失败');
       })
     }
   },
@@ -198,64 +201,7 @@ export default {
   }
 }
 </script>
-<template>
-    <div class="nav-right" v-if="userInfo.access_token" @mouseenter="enterHandler" @mouseleave="leaveHandler">
-    <span class = 'el-dropdown-link'>学习中心</span>
-    <span class="user">{{userInfo.username}}</span>
-    <img :src="userInfo.avatar" alt="">
-    <ul class="my_account" v-show="isShow">
-      <li>我的账户<i>></i></li>
-      <li>我的订单<i>></i></li>
-      <li>我的优惠券<i>></i></li>
-      <li>我的消息<span class="msg">({{userInfo.notice_num}})</span><i>></i></li>
-      <li>购物车<span class="count">({{userInfo.shop_cart_num}})</span></li>
-      <li>退出<i>></i></li>
-    </ul>
-  </div>
-  <!-- </el-dropdown> -->
-  <div class="nav-right" v-else>
-    <span>登录</span>
-     |  
-    <span>注册</span>
-  </div>
-</template>
 
-<script>
-  export default {
-    name: 'LuffyHeader',
-    data() {
-      const setImage = (e) => {
-        const file = e.target.files[0];
-        if (!file.type.includes("image/")) {
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          dialogVisible.value = true;
-          imgSrc.value = event.target.result;
-          cropper.value && cropper.value.replace(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      };
-      return {
-        isShow: false 
-      }
-    },
-    methods: {
-      enterHandler() {
-        this.isShow = true;
-      },
-      leaveHandler() {
-        this.isShow = false;
-      }
-    },
-    computed: {
-      userInfo(){
-        return this.$store.state.userInfo;
-      }
-    }
-  };
-</script>
 <style scoped>
 
 .notice {

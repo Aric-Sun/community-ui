@@ -1,66 +1,123 @@
 <template>
-    <div class="manage_page fillcontain">
-        <el-row style="height: 100%;">
-              <el-col :span="4"  style="min-height: 100%; background-color: #324057;">
-                <el-menu :default-active="defaultActive" style="min-height: 100%;" theme="dark" router>
-                    <el-menu-item index="manage"><i class="el-icon-menu"></i>首页</el-menu-item>
-                    <el-submenu index="2">
-                        <template slot="title"><i class="el-icon-document"></i>数据管理</template>
-                        <!--<el-menu-item index="userList">用户列表</el-menu-item>-->
-                        <el-menu-item index="shopList">卷宗管理</el-menu-item>
-                        <!--<el-menu-item index="foodList">食品列表</el-menu-item>-->
-                        <!--<el-menu-item index="orderList">订单列表</el-menu-item>-->
-                        <el-menu-item index="adminList">管理员列表</el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="3">
-                        <template slot="title"><i class="el-icon-plus"></i>添加数据</template>
-                        <el-menu-item index="addShop">创建用户</el-menu-item>
-                        <!--<el-menu-item index="addGoods">添加商品</el-menu-item>-->
-                    </el-submenu>
-                    <!--<el-submenu index="4">-->
-                        <!--<template slot="title"><i class="el-icon-star-on"></i>图表</template>-->
-                        <!--<el-menu-item index="visitor">用户分布</el-menu-item>-->
-                        <!--<!– <el-menu-item index="newMember">用户数据</el-menu-item> –>-->
-                    <!--</el-submenu>-->
-                    <!--<el-submenu index="5">-->
-                        <!--<template slot="title"><i class="el-icon-edit"></i>编辑</template>-->
-                        <!--<!– <el-menu-item index="uploadImg">上传图片</el-menu-item> –>-->
-                        <!--<el-menu-item index="vueEdit">文本编辑</el-menu-item>-->
-                    <!--</el-submenu>-->
-                    <el-submenu index="6">
-                        <template slot="title"><i class="el-icon-setting"></i>设置</template>
-                        <el-menu-item index="adminSet">管理员设置</el-menu-item>
-                        <!-- <el-menu-item index="sendMessage">发送通知</el-menu-item> -->
-                    </el-submenu>
-                    <el-submenu index="7">
-                        <template slot="title"><i class="el-icon-warning"></i>说明</template>
-                        <el-menu-item index="explain">说明</el-menu-item>
-                    </el-submenu>
-                </el-menu>
-            </el-col>
-            <el-col :span="20" style="height: 100%;overflow: auto;">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </el-col>
-        </el-row>
+  <div class="user-passage">
+    <div class="heading">
+      <h1>经理信息浏览</h1>
+    </div>
+    <div class="body">
+      <Table stripe border :columns="columns" :data="data" :loading="isLoading">
+        <template slot="action" slot-scope="{ row }">
+          <Button
+            type="error"
+            icon="md-trash"
+            @click="onDeleteUserPassageClicked(row.id)"
+            >删除</Button
+          >
+        </template>
+      </Table>
+      <div class="pager">
+        <Page
+          :total="totalSize"
+          :page-size="pageSize"
+          show-elevator
+          @on-change="onPageChanged"
+        />
       </div>
+    </div>
+    <Modal></Modal>
+  </div>
 </template>
 
 <script>
-    export default {
-        computed: {
-            defaultActive: function(){
-                return this.$route.path.replace('/', '');
-            }
-        },
-    }
+import { getManagers } from "network/manager";
+import { formatDate, getId } from "common/utils";
+
+export default {
+  name: "User-Passage",
+  data() {
+    return {
+      columns: [
+        { title: "经理ID", key: "id" },
+        { title: "用户名", key: "username" },
+        { title: "密码", key: "password" },
+      ],
+      isLoading: true,
+      data: [],
+      curEditingId: -1,
+      curPage: 1,
+      pageSize: 5,
+      totalSize: 1,
+    };
+  },
+  methods: {
+    onPageChanged(page) {
+      this.curPage = page;
+      this.fetchManagers();
+    },
+    fetchManagers() {
+      this.data = [];
+      this.isLoading = true;
+      getManagers(this.curPage - 1, this.pageSize)
+        .then((resp) => {
+          const page = resp.data.page;
+          this.totalSize = page.totalElements;
+          // console.log(resp);
+          for (const manager of resp.data._embedded.managers) {
+            const transformed = {
+              ...manager,
+              id: getId(manager._links),
+              username: manager.username,
+              password: manager.password,
+            };
+            // delete transformed.passTime;
+            // delete transformed.isIn;
+            this.data.push(transformed);
+          }
+        })
+        .catch((err) => {
+          this.$Message.error("获取经理信息失败");
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
+    },
+  },
+  mounted() {
+    this.fetchManagers();
+  },
+};
 </script>
 
+<style lang='scss' scoped>
+.user-passage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 208px;
+  right: 0;
+  padding: 2em;
+  background-color: #f5f6fa;
 
-<style lang="less" scoped>
-    @import '../style/mixin';
-    .manage_page{
+  .heading {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(193, 193, 193, 0.5);
 
+    h1 {
+      font-size: 24px;
+      margin: 0;
+      margin-bottom: 16px;
     }
+  }
+
+  .body {
+    padding: 20px;
+    background: #fff;
+
+    .pager {
+      margin-top: 10px;
+      text-align: right;
+    }
+  }
+}
 </style>

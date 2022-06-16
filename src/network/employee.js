@@ -16,12 +16,12 @@ export function getEmployeeInformations(page, size) {
     params: { page, size }
   });
 }
-export function updateEmployeeInformation({
-                                            userid,
-                                            department,
-                                            username,
-                                            password
-                                          }) {
+export function updataEmployeeInformation({
+  userid,
+  department,
+  username,
+  password
+}) {
   return request({
     url: "/employees/1",
     method: 'put',
@@ -36,27 +36,27 @@ export function updateEmployeeInformation({
 }
 //添加员工信息
 export function addEmployeeInformation({
-                                           department,
-                                           username,
-                                           position,
-                                           password
-                                       }) {
-    return request({
-        url: "/employees",
-        method: 'POST',
-        data: { //传给后端的json,参数根据具体信息修改
-            'departmentId': department,
-            'username': username,
-            'job': position,
-            'password':password
-        }
-    })
+  department,
+  username,
+  position,
+  password
+}) {
+  return request({
+    url: "/employees",
+    method: 'POST',
+    data: { //传给后端的json,参数根据具体信息修改
+      'departmentId': department,
+      'username': username,
+      'job': position,
+      'password':password
+    } 
+  })
 }
 export function getDepartmentName(
-    departmentId
+  departmentId
 ) {
-    return request({
-        url: "/departments/" + departmentId,
-        method: 'get'
-    })
+  return request({
+    url: "/departments/" + departmentId,
+    method: 'get'
+  })
 }

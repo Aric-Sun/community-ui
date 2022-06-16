@@ -8,6 +8,7 @@ export function getOwners(page, size) {
     params: { page, size }
   });
 }
+
 // 获取指定编号的业主具体信息
 export function getOwnerInfo(id) {
   return request({
@@ -15,6 +16,7 @@ export function getOwnerInfo(id) {
     method: 'GET'
   });
 }
+
 // 添加新业主
 export function addOwner({ name, sex, birthYear, buildingRoom, status, userId, createTime }) {
   return request({
@@ -23,6 +25,7 @@ export function addOwner({ name, sex, birthYear, buildingRoom, status, userId, c
     data: { name, sex, birthYear, buildingRoom, status, userId, createTime }
   });
 }
+
 // 编辑指定业主的信息
 export function editOwnerInfo({ id, name, sex, birthYear, buildingRoom, userId, createTime }) {
   return request({
@@ -31,6 +34,7 @@ export function editOwnerInfo({ id, name, sex, birthYear, buildingRoom, userId, 
     data: { name, sex, birthYear, buildingRoom, userId, createTime }
   });
 }
+
 // 查询业主信息
 export function queryOwnersInfo({ type, id }) {
   const queryUrl = '/usersInfo/search/findByUserId';
@@ -41,9 +45,9 @@ export function queryOwnersInfo({ type, id }) {
     // data: queryData
   });
 }
+
 // 删除指定的业主信息
 export function deleteOwner(id) {
-  console.log("waiting...");
   return request({
     url: `/usersInfo/${id}`,
     method: 'DELETE'

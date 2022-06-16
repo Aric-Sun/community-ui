@@ -34,11 +34,6 @@ export default {
 }
 </script>
 
-<div id="app">
-  <p>{{ foo }}</p>
-  <!-- 这里的 `foo` 不会更新！ -->
-  <button v-on:click="foo = 'baz'">Change it</button>
-
 <style>
   @import './assets/css/normalize.css';
   @import './assets/css/common.css';

@@ -1,21 +1,21 @@
 <template>
   <div class="data">
     <header>
-      À¬»øÍ°·Ö²¼¼°¿ÉÈÝÁ¿Õ¹Ê¾
+      åžƒåœ¾æ¡¶åˆ†å¸ƒåŠå¯å®¹é‡å±•ç¤º
     </header>
-    <!-- Í¼Àý -->
+    <!-- å›¾ä¾‹ -->
     <div class="legend">
       <div class="tipInformation">
-        <img src="../img/garbage_green.png" alt="" />¿É»ØÊÕÀ¬»øÍ°
+        <img src="../img/garbage_green.png" alt="" />å¯å›žæ”¶åžƒåœ¾æ¡¶
       </div>
       <div class="tipInformation">
-        <img src="../img/garbage_yellow.png" alt="" />³øÓàÀ¬»øÍ°
+        <img src="../img/garbage_yellow.png" alt="" />åŽ¨ä½™åžƒåœ¾æ¡¶
       </div>
       <div class="tipInformation">
-        <img src="../img/garbage_red.png" alt="" />ÓÐº¦À¬»øÍ°
+        <img src="../img/garbage_red.png" alt="" />æœ‰å®³åžƒåœ¾æ¡¶
       </div>
       <div class="tipInformation">
-        <img src="../img/garbage_blue.png" alt="" />ÆäËûÀ¬»øÍ°
+        <img src="../img/garbage_blue.png" alt="" />å…¶ä»–åžƒåœ¾æ¡¶
       </div>
     </div>
     <Row>
@@ -27,7 +27,7 @@
             :zoom="24"
             :scroll-wheel-zoom="false"
           >
-            <!-- À¬»øÍ°Í¼±í£º https://www.iconfont.cn/search/index?searchType=icon&q=%E5%9E%83%E5%9C%BE%E6%A1%B6 -->
+            <!-- åžƒåœ¾æ¡¶å›¾è¡¨ï¼š https://www.iconfont.cn/search/index?searchType=icon&q=%E5%9E%83%E5%9C%BE%E6%A1%B6 -->
             <bm-marker
               v-for="item in pointsGreen"
               :key="item.pointsGreen"
@@ -68,74 +68,74 @@
                 size: { width: 20, height: 20 },
               }"
             ></bm-marker>
-            <div class="tipInformation">Tip:µã»÷¿É²é¿´À¬»øÍ°¾ßÌåÐÅÏ¢</div>
+            <div class="tipInformation">Tip:ç‚¹å‡»å¯æŸ¥çœ‹åžƒåœ¾æ¡¶å…·ä½“ä¿¡æ¯</div>
           </baidu-map>
         </Card>
       </Col>
       <Col span="6" offset="0.5">
         <Card class="gargarbageLis">
-          <p slot="title">À¬»øÍ°×´Ì¬ÁÐ±í</p>
-          <p>0ºÅÀ¬»øÕ¾£º</p>
+          <p slot="title">åžƒåœ¾æ¡¶çŠ¶æ€åˆ—è¡¨</p>
+          <p>0å·åžƒåœ¾ç«™ï¼š</p>
           <Progress :percent= garbageStatusLis[0].percentGreen :stroke-color="['#87d068', '#87d068']" >
-              <span v-if="garbageStatusLis[0].percentGreen == 100" style="color:red">ÒÑÂú</span>
+              <span v-if="garbageStatusLis[0].percentGreen == 100" style="color:red">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[0].percentYellow :stroke-color="['#F3D279', '#F3D279']" >
-            <span v-if="garbageStatusLis[0].percentYellow == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[0].percentYellow == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[0].percentRed :stroke-color="['#EF6E6E', '#EF6E6E']" >
-            <span v-if="garbageStatusLis[0].percentRed == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[0].percentRed == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[0].percentBlue :stroke-color="['#108ee9', '#108ee9']" >
-            <span v-if="garbageStatusLis[0].percentBlue == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[0].percentBlue == 100">å·²æ»¡</span>
           </Progress>
-          <p>1ºÅÀ¬»øÕ¾£º</p>
+          <p>1å·åžƒåœ¾ç«™ï¼š</p>
           <Progress :percent= garbageStatusLis[1].percentGreen :stroke-color="['#87d068', '#87d068']" >
-              <span v-if="garbageStatusLis[1].percentGreen == 100" style="color:red">ÒÑÂú</span>
+              <span v-if="garbageStatusLis[1].percentGreen == 100" style="color:red">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[1].percentYellow :stroke-color="['#F3D279', '#F3D279']" >
-            <span v-if="garbageStatusLis[1].percentYellow == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[1].percentYellow == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[1].percentRed :stroke-color="['#EF6E6E', '#EF6E6E']" >
-            <span v-if="garbageStatusLis[1].percentRed == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[1].percentRed == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[1].percentBlue :stroke-color="['#108ee9', '#108ee9']" >
-            <span v-if="garbageStatusLis[1].percentBlue == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[1].percentBlue == 100">å·²æ»¡</span>
           </Progress>
-          <p>2ºÅÀ¬»øÕ¾£º</p>
+          <p>2å·åžƒåœ¾ç«™ï¼š</p>
           <Progress :percent= garbageStatusLis[2].percentGreen :stroke-color="['#87d068', '#87d068']" >
-              <span v-if="garbageStatusLis[2].percentGreen == 100" style="color:red">ÒÑÂú</span>
+              <span v-if="garbageStatusLis[2].percentGreen == 100" style="color:red">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[2].percentYellow :stroke-color="['#F3D279', '#F3D279']" >
-            <span v-if="garbageStatusLis[2].percentYellow == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[2].percentYellow == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[2].percentRed :stroke-color="['#EF6E6E', '#EF6E6E']" >
-            <span v-if="garbageStatusLis[2].percentRed == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[2].percentRed == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[2].percentBlue :stroke-color="['#108ee9', '#108ee9']" >
-            <span v-if="garbageStatusLis[2].percentBlue == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[2].percentBlue == 100">å·²æ»¡</span>
           </Progress>
-          <p>3ºÅÀ¬»øÕ¾£º</p>
+          <p>3å·åžƒåœ¾ç«™ï¼š</p>
           <Progress :percent= garbageStatusLis[3].percentGreen :stroke-color="['#87d068', '#87d068']" >
-              <span v-if="garbageStatusLis[3].percentGreen == 100" style="color:red">ÒÑÂú</span>
+              <span v-if="garbageStatusLis[3].percentGreen == 100" style="color:red">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[3].percentYellow :stroke-color="['#F3D279', '#F3D279']" >
-            <span v-if="garbageStatusLis[3].percentYellow == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[3].percentYellow == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[3].percentRed :stroke-color="['#EF6E6E', '#EF6E6E']" >
-            <span v-if="garbageStatusLis[3].percentRed == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[3].percentRed == 100">å·²æ»¡</span>
           </Progress>
           <Progress :percent= garbageStatusLis[3].percentBlue :stroke-color="['#108ee9', '#108ee9']" >
-            <span v-if="garbageStatusLis[3].percentBlue == 100">ÒÑÂú</span>
+            <span v-if="garbageStatusLis[3].percentBlue == 100">å·²æ»¡</span>
           </Progress>
         </Card>
       </Col>
     </Row>
     <div style="margin-bottom:20px"></div>
     <header>
-      À¬»øÍ¶µÝÍ³¼Æ
+      åžƒåœ¾æŠ•é€’ç»Ÿè®¡
     </header>
     <Row style="margin-top:20px">
-      <!-- <h2 style="margin-bottom:12px;color:#515A6E">À¬»øÍ¶µÝÍ³¼Æ</h2> -->
+      <!-- <h2 style="margin-bottom:12px;color:#515A6E">åžƒåœ¾æŠ•é€’ç»Ÿè®¡</h2> -->
       <!-- <Divider size="small"></Divider> -->
       <Col span="12">
         <Card>
@@ -150,7 +150,7 @@
     </Row>
     <div style="margin-bottom:20px"></div>
     <header>
-      Í¨ÐÐÁ÷Á¿Í³¼Æ
+      é€šè¡Œæµé‡ç»Ÿè®¡
     </header>
     <Row style="margin-top:20px">
       <Col span="24">
@@ -211,8 +211,8 @@ export default {
         lng: 118.934506,
         lat: 32.131993,
       },
-      pointsGreen: [], //ÂÌÉ«À¬»øÍ°Î»ÖÃ
-      pointsYellow: [], //»ÆÉ«À¬»øÍ°Î»ÖÃ
+      pointsGreen: [], //ç»¿è‰²åžƒåœ¾æ¡¶ä½ç½®
+      pointsYellow: [], //é»„è‰²åžƒåœ¾æ¡¶ä½ç½®
       pointsRed: [],
       pointsBlue: [],
     };
@@ -225,14 +225,14 @@ export default {
 
       option = {
           title: {
-              text: 'ÍøÂç·ÃÎÊÇé¿ö',
-              // subtext: '´¿ÊôÐé¹¹',
+              text: 'ç½‘ç»œè®¿é—®æƒ…å†µ',
+              // subtext: 'çº¯å±žè™šæž„',
               top: 0,
               left: 10,
-              textStyle: { // Í¼ÀýµÄ¹«ÓÃÎÄ±¾ÑùÊ½¡£
+              textStyle: { // å›¾ä¾‹çš„å…¬ç”¨æ–‡æœ¬æ ·å¼ã€‚
                   fontSize: 13,
                   color: '#17233D',
-                  fontWeight: 'normal' // ÎÄ×Ö×ÖÌåµÄ´ÖÏ¸£¬¿ÉÑ¡'normal'£¬'bold'£¬'bolder'£¬'lighter'
+                  fontWeight: 'normal' // æ–‡å­—å­—ä½“çš„ç²—ç»†ï¼Œå¯é€‰'normal'ï¼Œ'bold'ï¼Œ'bolder'ï¼Œ'lighter'
               },
           },
           tooltip: {
@@ -244,7 +244,7 @@ export default {
               data: (function (){
                   var list = [];
                   for (var i = 1; i <= 7; i++) {
-                      list.push('ÖÜ'+i  );
+                      list.push('å‘¨'+i  );
                   }
                   return list;
               })()
@@ -273,7 +273,7 @@ export default {
               var series = [];
               for (var i = 1; i <= 7; i++) {
                   series.push({
-                      name: '·ÃÎÊÈËÊý',
+                      name: 'è®¿é—®äººæ•°',
                       type: 'radar',
                       symbol: 'none',
                       lineStyle: {
@@ -293,7 +293,7 @@ export default {
                               i * i* i / 3+ 100,
                               i * i* i / 4+ 100,
                           ],
-                          name: 'ÖÜ'+ i  
+                          name: 'å‘¨'+ i  
                       }]
                   });
               }
@@ -311,14 +311,14 @@ export default {
 
       option = {
         title: {
-              text: 'ÈË³µÍ¨ÐÐÁ÷Á¿',
-              // subtext: '´¿ÊôÐé¹¹',
+              text: 'äººè½¦é€šè¡Œæµé‡',
+              // subtext: 'çº¯å±žè™šæž„',
               top: 0,
               left: 10,
-              textStyle: { // Í¼ÀýµÄ¹«ÓÃÎÄ±¾ÑùÊ½¡£
+              textStyle: { // å›¾ä¾‹çš„å…¬ç”¨æ–‡æœ¬æ ·å¼ã€‚
                   fontSize: 14,
                   color: '#515A6E',
-                  fontWeight: 'normal' // ÎÄ×Ö×ÖÌåµÄ´ÖÏ¸£¬¿ÉÑ¡'normal'£¬'bold'£¬'bolder'£¬'lighter'
+                  fontWeight: 'normal' // æ–‡å­—å­—ä½“çš„ç²—ç»†ï¼Œå¯é€‰'normal'ï¼Œ'bold'ï¼Œ'bolder'ï¼Œ'lighter'
               },
           },
           tooltip: {
@@ -340,7 +340,7 @@ export default {
               }
           },
           legend: {
-              data: ['¶«ÃÅ', 'Î÷ÃÅ','ÄÏÃÅ','±±ÃÅ', '³µÁ÷Á¿']
+              data: ['ä¸œé—¨', 'è¥¿é—¨','å—é—¨','åŒ—é—¨', 'è½¦æµé‡']
           },
           xAxis: [
               {
@@ -354,49 +354,49 @@ export default {
           yAxis: [
               {
                   type: 'value',
-                  name: 'ÈËÁ÷Á¿',
+                  name: 'äººæµé‡',
                   min: 0,
                   max: 250,
                   interval: 50,
                   axisLabel: {
-                      formatter: '{value} ÈË´Î'
+                      formatter: '{value} äººæ¬¡'
                   }
               },
               {
                   type: 'value',
-                  name: '³µÁ÷Á¿',
+                  name: 'è½¦æµé‡',
                   min: 0,
                   max: 25,
                   interval: 5,
                   axisLabel: {
-                      formatter: '{value} ³µ´Î'
+                      formatter: '{value} è½¦æ¬¡'
                   }
               }
           ],
           grid: { bottom: "7%", top: "22%" },
           series: [
               {
-                  name: '¶«ÃÅ',
+                  name: 'ä¸œé—¨',
                   type: 'bar',
                   data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
               },
               {
-                  name: 'Î÷ÃÅ',
+                  name: 'è¥¿é—¨',
                   type: 'bar',
                   data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
               },
               {
-                  name: 'ÄÏÃÅ',
+                  name: 'å—é—¨',
                   type: 'bar',
                   data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
               },
               {
-                  name: '±±ÃÅ',
+                  name: 'åŒ—é—¨',
                   type: 'bar',
                   data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
               },
               {
-                  name: '³µÁ÷Á¿',
+                  name: 'è½¦æµé‡',
                   type: 'line',
                   yAxisIndex: 1,
                   data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
@@ -496,14 +496,14 @@ export default {
 
       option = {
         title: {
-              text: '·ÖÀàÀ¬»øÕ¼±È',
-              // subtext: '´¿ÊôÐé¹¹',
+              text: 'åˆ†ç±»åžƒåœ¾å æ¯”',
+              // subtext: 'çº¯å±žè™šæž„',
               top: 0,
               left: 10,
-              textStyle: { // Í¼ÀýµÄ¹«ÓÃÎÄ±¾ÑùÊ½¡£
+              textStyle: { // å›¾ä¾‹çš„å…¬ç”¨æ–‡æœ¬æ ·å¼ã€‚
                   fontSize: 13,
                   color: '#17233D',
-                  fontWeight: 'normal' // ÎÄ×Ö×ÖÌåµÄ´ÖÏ¸£¬¿ÉÑ¡'normal'£¬'bold'£¬'bolder'£¬'lighter'
+                  fontWeight: 'normal' // æ–‡å­—å­—ä½“çš„ç²—ç»†ï¼Œå¯é€‰'normal'ï¼Œ'bold'ï¼Œ'bolder'ï¼Œ'lighter'
               },
           },
         tooltip: {
@@ -513,7 +513,7 @@ export default {
           },
         },
         legend: {
-          data: ["ÆäËüÀ¬»ø", "¿É»ØÊÕÀ¬»ø", "³øÓàÀ¬»ø", "ÓÐº¦À¬»ø"],
+          data: ["å…¶å®ƒåžƒåœ¾", "å¯å›žæ”¶åžƒåœ¾", "åŽ¨ä½™åžƒåœ¾", "æœ‰å®³åžƒåœ¾"],
         },
         toolbox: {
           show: true,
@@ -533,7 +533,7 @@ export default {
           {
             type: "category",
             axisTick: { show: false },
-            data: ["0ºÅÀ¬»øÕ¾", "1ºÅÀ¬»øÕ¾", "2ºÅÀ¬»øÕ¾", "3ºÅÀ¬»øÕ¾"],
+            data: ["0å·åžƒåœ¾ç«™", "1å·åžƒåœ¾ç«™", "2å·åžƒåœ¾ç«™", "3å·åžƒåœ¾ç«™"],
           },
         ],
         yAxis: [
@@ -541,10 +541,10 @@ export default {
             type: "value",
           },
         ],
-        grid: { bottom: "7%", top: "22%" },//Í¼±íÎ»ÖÃ
+        grid: { bottom: "7%", top: "22%" },//å›¾è¡¨ä½ç½®
         series: [
           {
-            name: "ÆäËüÀ¬»ø",
+            name: "å…¶å®ƒåžƒåœ¾",
             type: "bar",
             barGap: 0,
             label: labelOption,
@@ -554,7 +554,7 @@ export default {
             data: [20, 10, 16, 4],
           },
           {
-            name: "¿É»ØÊÕÀ¬»ø",
+            name: "å¯å›žæ”¶åžƒåœ¾",
             type: "bar",
             label: labelOption,
             emphasis: {
@@ -563,7 +563,7 @@ export default {
             data: [54, 52, 61, 84],
           },
           {
-            name: "³øÓàÀ¬»ø",
+            name: "åŽ¨ä½™åžƒåœ¾",
             type: "bar",
             label: labelOption,
             emphasis: {
@@ -572,7 +572,7 @@ export default {
             data: [13, 32, 21, 4],
           },
           {
-            name: "ÓÐº¦À¬»ø",
+            name: "æœ‰å®³åžƒåœ¾",
             type: "bar",
             label: labelOption,
             emphasis: {
@@ -593,14 +593,14 @@ export default {
         option = {
           legend: {},
           title: {
-              text: 'À¬»øÍ¶µÝÍ³¼Æ',
-              // subtext: '´¿ÊôÐé¹¹',
+              text: 'åžƒåœ¾æŠ•é€’ç»Ÿè®¡',
+              // subtext: 'çº¯å±žè™šæž„',
               top: 0,
               left: 10,
-              textStyle: { // Í¼ÀýµÄ¹«ÓÃÎÄ±¾ÑùÊ½¡£
+              textStyle: { // å›¾ä¾‹çš„å…¬ç”¨æ–‡æœ¬æ ·å¼ã€‚
                   fontSize: 13,
                   color: '#17233D',
-                  fontWeight: 'normal' // ÎÄ×Ö×ÖÌåµÄ´ÖÏ¸£¬¿ÉÑ¡'normal'£¬'bold'£¬'bolder'£¬'lighter'
+                  fontWeight: 'normal' // æ–‡å­—å­—ä½“çš„ç²—ç»†ï¼Œå¯é€‰'normal'ï¼Œ'bold'ï¼Œ'bolder'ï¼Œ'lighter'
               },
           },
           tooltip: {
@@ -610,10 +610,10 @@ export default {
           dataset: {
             source: [
               ["product", "4-20", "4-21", "4-22", "4-23", "4-24", "4-25"],
-              ["0ºÅÀ¬»øÕ¾", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
-              ["1ºÅÀ¬»øÕ¾", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
-              ["2ºÅÀ¬»øÕ¾", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
-              ["3ºÅÀ¬»øÕ¾", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
+              ["0å·åžƒåœ¾ç«™", 56.5, 82.1, 88.7, 70.1, 53.4, 85.1],
+              ["1å·åžƒåœ¾ç«™", 51.1, 51.4, 55.1, 53.3, 73.8, 68.7],
+              ["2å·åžƒåœ¾ç«™", 40.1, 62.2, 69.5, 36.4, 45.2, 32.5],
+              ["3å·åžƒåœ¾ç«™", 25.2, 37.1, 41.2, 18, 33.9, 49.1],
             ],
           },
           xAxis: { type: "category" },
@@ -687,7 +687,7 @@ export default {
       option && myChart.setOption(option);
     },
     clickHandlerGreen(e) {
-      // alert(`µ¥»÷µãµÄ×ø±êÎª£º${e.point.lng}, ${e.point.lat}`);
+      // alert(`å•å‡»ç‚¹çš„åæ ‡ä¸ºï¼š${e.point.lng}, ${e.point.lat}`);
       let lat = e.point.lat + "";
       let lng = e.point.lng + "";
       let slat = lat.substring(0, lat.length - 2);
@@ -703,7 +703,7 @@ export default {
         // console.log(plngs);
         if (slat == plats && slng == plngs) {
           this.$Message.info({
-            content: `µ¥»÷µÄÎª£º` + i + `ºÅ¿É»ØÊÕÀ¬»øÍ°`,
+            content: `å•å‡»çš„ä¸ºï¼š` + i + `å·å¯å›žæ”¶åžƒåœ¾æ¡¶`,
             duration: 3,
           });
           break;
@@ -726,7 +726,7 @@ export default {
         // console.log(plngs);
         if (slat == plats && slng == plngs) {
           this.$Message.info({
-            content: `µ¥»÷µÄÎª£º` + i + `ºÅ³øÓàÀ¬»øÍ°`,
+            content: `å•å‡»çš„ä¸ºï¼š` + i + `å·åŽ¨ä½™åžƒåœ¾æ¡¶`,
             duration: 3,
           });
           break;
@@ -749,7 +749,7 @@ export default {
         // console.log(plngs);
         if (slat == plats && slng == plngs) {
           this.$Message.info({
-            content: `µ¥»÷µÄÎª£º` + i + `ºÅÓÐº¦À¬»øÍ°`,
+            content: `å•å‡»çš„ä¸ºï¼š` + i + `å·æœ‰å®³åžƒåœ¾æ¡¶`,
             duration: 3,
           });
           break;
@@ -772,7 +772,7 @@ export default {
         // console.log(plngs);
         if (slat == plats && slng == plngs) {
           this.$Message.info({
-            content: `µ¥»÷µÄÎª£º` + i + `ºÅÆäËûÀ¬»øÍ°`,
+            content: `å•å‡»çš„ä¸ºï¼š` + i + `å·å…¶ä»–åžƒåœ¾æ¡¶`,
             duration: 3,
           });
           break;
@@ -780,7 +780,7 @@ export default {
       }
     },
     addPoints() {
-      //Ìí¼ÓÀ¬»øÍ°,×ø±êÎ²Êý²»ÄÜÎª0£¬·ñÔòµã»÷ÏÔÊ¾¼¸ºÅÀ¬»øÍ°»á³öÎÊÌâ
+      //æ·»åŠ åžƒåœ¾æ¡¶,åæ ‡å°¾æ•°ä¸èƒ½ä¸º0ï¼Œå¦åˆ™ç‚¹å‡»æ˜¾ç¤ºå‡ å·åžƒåœ¾æ¡¶ä¼šå‡ºé—®é¢˜
       this.pointsGreen = [
         {
           lng: 118.933956,
@@ -854,14 +854,6 @@ export default {
         },
       ]
     },
-    rotate (index) {
-      this.deg[index] += 90
-      document.getElementsByTagName('img')[index].style.transform = `rotate(${this.deg[index]}deg)`
-      // this.deg[index] === 360 ? this.deg[index] = 0 : ''
-      // console.log(this.imgNow)
-      // console.log(this.deg)
-      console.log(this.confirm())
-    },
   },
   mounted() {
     this.addPoints();
@@ -894,7 +886,7 @@ header {
   width: 100%;
   height: 500px;
 }
-/* È¥³ý×óÏÂ½Ç°Ù¶ÈµØÍ¼logo */
+/* åŽ»é™¤å·¦ä¸‹è§’ç™¾åº¦åœ°å›¾logo */
 /deep/.anchorBL {
   display: none !important;
 }

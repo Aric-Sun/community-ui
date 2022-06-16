@@ -289,7 +289,7 @@ export default {
         }
         this.isDataLoading = false;
       }).catch(err => {
-        this.$Message.error('输入有误，请检查后重新输入');
+        this.$Message.error('查询失败');
       });
     }
   },

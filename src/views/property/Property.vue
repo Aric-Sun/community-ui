@@ -268,31 +268,32 @@ export default {
   },
   methods: {
     handleContextMenu (row) {
-      const index = this.data.findIndex(item => item.userid === row.userid);
-      this.contextLine = index;
+        const index = this.data.findIndex(item => item.userid === row.userid);
+        this.contextLine = index;
     },
     rePwd () {
       this.formItem = JSON.parse(JSON.stringify(this.data[this.contextLine]));
       this.$Modal.confirm({
-        title: '确认重置密码',
-        content: '是否确认重置'+this.formItem.name+'的密码？',
-        onOk: () => {
-          this.addData.userid = this.formItem.userid;
-          this.addData.position = this.formItem.position;
-          this.addData.username = this.formItem.name;
-          this.addData.department = this.formItem.department;
-          updataPropertyInformation(this.addData).then((res) => {
-            this.$Message.info('提交成功');
-            setTimeout(() => {
-              this.getEmployeeInformation();
-              // console.log(res);
-            }, 800);
-          });
-        },
-        onCancel: () => {
-          this.$Message.info('取消');
-        }
+          title: '确认重置密码',
+          content: '是否确认重置'+this.formItem.name+'的密码？',
+          onOk: () => {
+            this.addData.userid = this.formItem.userid;
+            this.addData.position = this.formItem.position;
+            this.addData.username = this.formItem.name;
+            this.addData.department = this.formItem.department;
+            updataPropertyInformation(this.addData).then((res) => {
+                this.$Message.info('提交成功');
+                setTimeout(() => {
+                  this.getEmployeeInformation();
+                  // console.log(res);
+                }, 800);
+            });
+          },
+          onCancel: () => {
+              this.$Message.info('取消');
+          }
       });
+      
     },
     onPageChanged(page) {
       this.curPage = page;
@@ -301,7 +302,7 @@ export default {
     getEmployeeInformation(){//获取员工信息
       this.data =[];//清空数组
       getDepartmentInformation().then((res) => {//获取部门信息
-        // console.log(res._embedded.departments);
+      // console.log(res._embedded.departments);
         for(let i in res.data._embedded.departments){
           const idStr = res.data._embedded.departments[i]._links.self.href;
           const id = idStr.split('/');
@@ -311,34 +312,34 @@ export default {
           })
         }
         setTimeout(() => {//获取人员信息
-          getEmployeeInformations(this.curPage - 1, this.pageSize).then((res) => {
-            const page = res.data.page;
-            this.totalSize = page.totalElements;
-            for(let i in res.data._embedded.employees){
-              const idStr = res.data._embedded.employees[i]._links.self.href;//获取id
-              const id = idStr.split('/');
+        getEmployeeInformations(this.curPage - 1, this.pageSize).then((res) => {
+          const page = res.data.page;
+        this.totalSize = page.totalElements;
+          for(let i in res.data._embedded.employees){
+            const idStr = res.data._embedded.employees[i]._links.self.href;//获取id
+            const id = idStr.split('/');
               if(i == 0){
                 this.data = [{
-                  userid: id[4],
+                  userid: id[4], 
                   name: res.data._embedded.employees[i].username,
                   department:  res.data._embedded.employees[i].departmentId,
                   position: res.data._embedded.employees[i].job,
                   state: '工作中'//需要改动表格
                 }];//清空数组
               }else{
-                this.data.push({userid: id[4],
-                  name: res.data._embedded.employees[i].username,
-                  department: res.data._embedded.employees[i].departmentId,
-                  position: res.data._embedded.employees[i].job,
-                  state: '工作中'//需要改动表格
-                });
+                this.data.push({userid: id[4], 
+                              name: res.data._embedded.employees[i].username,
+                              department: res.data._embedded.employees[i].departmentId,
+                              position: res.data._embedded.employees[i].job,
+                              state: '工作中'//需要改动表格
+                              });
               }
-              for(let l = 0;l < this.DepartmentData.length;l++){
-                if(this.data[i].department == this.DepartmentData[l].DepartmentId){
-                  this.data[i].department = JSON.parse(JSON.stringify(this.DepartmentData[l].DepartmentName));
-                }
+            for(let l = 0;l < this.DepartmentData.length;l++){
+              if(this.data[i].department == this.DepartmentData[l].DepartmentId){
+                this.data[i].department = JSON.parse(JSON.stringify(this.DepartmentData[l].DepartmentName));
               }
             }
+          }
           });
         }, 100);
       });
@@ -360,12 +361,12 @@ export default {
       this.mtitle = '添加员工';//更改模态框标题
       // this.formItem = '';//清空一下
       this.formItem= {// 模态框展示表单
-        name: '',// 姓名
-        position:'',// 职务
-        department: '',// 所属部门
-        state:'',// 状态
+          name: '',// 姓名
+          position:'',// 职务
+          department: '',// 所属部门
+          state:'',// 状态
       },
-          this.pmodel = 0;//0表示添加员工
+      this.pmodel = 0;//0表示添加员工
       this.mAdd = true;//打开模态框
     },
     //修改
@@ -394,7 +395,7 @@ export default {
       this.mtitle = '编辑员工信息';
       this.pmodel = 1;//1表示修改员工信息
       this.mAdd = true;//打开模态框
-
+      
     },
     //删除
     del(){
@@ -406,28 +407,28 @@ export default {
       // this.mDelete = true;//打开模态框。
       // this.formItem = this.data[index];//显示被删除者的信息
       // console.log(index);
-      // this.delIndex = index;
+      // this.delIndex = index;    
       this.$Modal.confirm({
-        title: '删除',
-        content: '确定删除'+this.data[index].name+'?',
-        onOk: () => {
-          this.deleteOk(index);
-          this.data.splice(index, 1);
-        },
-        onCancel: () => {
-          this.$Message.info('cancel');
-        }
-      });
+              title: '删除',
+              content: '确定删除'+this.data[index].name+'?',
+              onOk: () => {
+                  this.deleteOk(index);
+                  this.data.splice(index, 1);
+              },
+              onCancel: () => {
+                  this.$Message.info('cancel');
+              }
+          });
     },
     deleteOk(index){
-      const id = this.data[index].userid;
-      deleteEmployees(id).then(res =>{
-        this.$Message.info('删除成功');
-        setTimeout(() => {
-          console.log(res);
-          this.getEmployeeInformation();
-        }, 400);
-      })
+        const id = this.data[index].userid;
+        deleteEmployees(id).then(res =>{
+          this.$Message.info('删除成功');
+          setTimeout(() => {
+            console.log(res);
+            this.getEmployeeInformation();
+          }, 400);
+        })
     },
     ok () {//确定
       this.$Message.info('提交信息中');
@@ -446,7 +447,7 @@ export default {
             this.getEmployeeInformation();
           }, 400);
         });
-
+      
       }else{//修改员工信息
         // console.log(this.formItem);
         this.addData.userid = this.formItem.userid;
@@ -455,14 +456,14 @@ export default {
         this.addData.department = this.formItem.department;
         const userid = this.formItem.userid;
         getPropertyformation(userid).then((res =>{
-          this.addData.password = res.data.password;//保证密码不变
-          updataPropertyInformation(this.addData).then((res) => {
+           this.addData.password = res.data.password;//保证密码不变
+           updataPropertyInformation(this.addData).then((res) => {
             this.$Message.info('提交成功');
             setTimeout(() => {
               this.getEmployeeInformation();
               // console.log(res);
             }, 800);
-          });
+           });
         }))
       }
     },
@@ -472,108 +473,6 @@ export default {
   }
 }
 </script>
-<template>
-  <div class="containers bpmn-color" ref="content">
-    <div class="canvas" ref="canvas"></div>
-  </div>
-</template>
-
-<script>
-// 引入相关的依赖
-import BpmnModeler from 'bpmn-js/lib/Modeler'
-import { xmlStr } from '../mock/xmlStr'
-// 引入自定义的一些module
-import customModule from './custom'
-export default {
-  name: '',
-  components: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  // 生命周期 - 载入后, Vue 实例挂载到实际的 DOM 操作完成，一般在该过程进行 Ajax 交互
-  mounted() {
-    this.init()
-  },
-  data() {
-    return {
-      // bpmn建模器
-      bpmnModeler: null,
-      container: null,
-      canvas: null
-    }
-  },
-  // 方法集合
-  methods: {
-    init() {
-      // 获取到属性ref为“content”的dom节点
-      this.container = this.$refs.content
-      // 获取到属性ref为“canvas”的dom节点
-      const canvas = this.$refs.canvas
-      // 建模
-      this.bpmnModeler = new BpmnModeler({
-        container: canvas,
-        //添加控制板
-        propertiesPanel: {
-          parent: '#js-properties-panel'
-        },
-        additionalModules: [
-          customModule
-        ]
-      })
-      this.createNewDiagram()
-    },
-    createNewDiagram() {
-      // 将字符串转换成图显示出来
-      this.bpmnModeler.importXML(xmlStr, err => {
-        if (err) {
-          // console.error(err)
-        } else {
-          // 这里是成功之后的回调, 可以在这里做一系列事情
-          this.success()
-        }
-      })
-    },
-    success() {
-      // 给图绑定事件，当图有发生改变就会触发这个事件
-      const that = this
-      this.bpmnModeler.on('commandStack.changed', function() {
-        that.saveDiagram(function(err, xml) {
-          console.log(xml)
-        })
-      })
-    },
-    // 下载为bpmn格式,done是个函数，调用的时候传入的
-    saveDiagram(done) {
-      // 把传入的done再传给bpmn原型的saveXML函数调用
-      this.bpmnModeler.saveXML({ format: true }, function(err, xml) {
-        done(err, xml)
-      })
-    }
-  },
-  // 计算属性
-  computed: {}
-}
-</script>
-
-<style scoped>
-.containers {
-  background-color: #ffffff;
-  width: 100%;
-  height: calc(100vh - 52px);
-}
-.canvas {
-  width: 100%;
-  height: 100%;
-}
-.panel {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 300px;
-}
-.bpmn-icon-start-event-none:before {
-  color: red;
-}
-</style>
 <style scoped>
 /* 背景颜色铺满 */
 .property{

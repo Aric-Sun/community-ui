@@ -4,38 +4,38 @@ import { request } from "./request";
  * promise
  */
 // 获取部门信息
-export function getDepartmentInformation() {
+ export function getDepartmentInformation() {
     return request({
       url: "/departments",
       method: 'GET',
     });
   }
-// 添加新部门
+  // 添加新部门
 export function addDepartments({ departmentName }) {
-    return request({
-        url: '/departments',
-        method: 'POST',
-        data: { 'name': departmentName}
-    });
+  return request({
+    url: '/departments',
+    method: 'POST',
+    data: { 'name': departmentName}
+  });
 }
 //修改
 export function updataDepartments({
-                                      id,
-                                      departmentName,
-                                  }) {
-    // console.log(departmentName + "001");
-    return request({
-        url: `/departments/${id}`,
-        method: 'PUT',
-        data: { //传给后端的json,参数根据具体信息修改
-            'name': departmentName,
-        }
-    })
+  id,
+  departmentName,
+}) {
+  // console.log(departmentName + "001");
+  return request({
+    url: `/departments/${id}`,
+    method: 'PUT',
+    data: { //传给后端的json,参数根据具体信息修改
+      'name': departmentName,
+    }
+  })
 }
 //删除
 export function deleteDepartments(id) {
-    return request({
-        url: `/departments/${id}`,
-        method: 'DELETE'
-    });
+  return request({
+    url: `/departments/${id}`,
+    method: 'DELETE'
+  });
 }

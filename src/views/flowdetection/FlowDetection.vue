@@ -146,6 +146,7 @@ export default {
             { text: "16:00~20:00", max: 300 },
             { text: "20:00~24:00", max: 300 },
           ],
+
         },
         series: (function() {
           var series = [];
@@ -180,20 +181,8 @@ export default {
           return series;
         })(),
       };
+
       option && myChart.setOption(option);
-    },
-    // 保存成svg图片
-    saveToSvg () {
-      this.graph.toSVG(dataUri => {
-        // 下载
-        DataUri.downloadDataUri(DataUri.svgToDataUrl(dataUri), 'chart.svg')
-        // }, {
-        //   preserveDimensions: {
-        //     width: 800,
-        //     height: 800
-        //   }
-        // })
-      })
     },
     lineHistogram() {
       var chartDom = document.getElementById("lineHistogramCss");
@@ -361,12 +350,9 @@ export default {
           },
         ],
       };
+
       option && myChart.setOption(option);
     },
-  },
-  // 是否全屏
-  handleFull (value) {
-    this.visible = value
   },
   mounted() {
     // this.lineHistogram();
@@ -406,10 +392,5 @@ header {
 #radarCss {
   width: 100%;
   height: 400px;
-}
-.header-iconfont{
-  margin-left: 20px;
-  cursor: pointer;
-  color: #595959;
 }
 </style>
