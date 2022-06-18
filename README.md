@@ -20,3 +20,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Thanks
+![](https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA.svg)
+This project is powered by IntelliJ IDEA, thanks to JetBrains for the [support](https://jb.gg/OpenSourceSupport) of open source projects. 
